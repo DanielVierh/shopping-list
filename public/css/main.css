@@ -1,0 +1,24 @@
+/*!**************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/style.scss ***!
+  \**************************************************************************************************************/
+.grid {
+  display: grid;
+  grid-template-columns: repeat 12, 1fr;
+  gap: 30px;
+  max-width: 1400px;
+}
+
+.center {
+  margin: 0 auto;
+  max-width: 1400px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  line-height: 1.5em;
+  scroll-behavior: smooth;
+  background-color: rgba(0, 0, 0, 0.874);
+  color: white;
+}
