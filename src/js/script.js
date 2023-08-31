@@ -14,24 +14,24 @@ class Product {
 
 }
 
-const pizza = new Product(122, 'Pizza Magharita', 3.22)
-const brot = new Product(123, 'Brot', 1.59)
-const apfel = new Product(124, 'Apfel', 2.99)
+const pizza = new Product(122, 'Pizza Magharita', 3.22);
+const brot = new Product(123, 'Brot', 1.59);
+const apfel = new Product(124, 'Apfel', 2.99);
 
 pizza.is_on_list = true;
 brot.is_on_list = true;
-apfel.is_on_list = true;    
+apfel.is_on_list = true;
 
 pizza.is_open = true;
 brot.is_open = true;
-apfel.is_open = true;    
+apfel.is_open = true;
 
 
-shoppinglist.push(pizza)
-shoppinglist.push(brot)
-shoppinglist.push(apfel)
+shoppinglist.push(pizza);
+shoppinglist.push(brot);
+shoppinglist.push(apfel);
 
-render_shopping_list()
+render_shopping_list();
 
 
 
@@ -41,14 +41,13 @@ function render_shopping_list() {
     let calculated_shopping_sum = 0;
 
     shoppinglist.forEach((product) => {
-        console.log(product);
         calculated_shopping_sum += product.product_price;
 
-        let prod_cont = document.createElement('div');
-        prod_cont.innerHTML = product.product_name;
-        prod_cont.classList.add("product");
+        let prod_container = document.createElement('div');
+        prod_container.innerHTML = product.product_name;
+        prod_container.classList.add("product");
 
-        shopping_list.appendChild(prod_cont)
+        shopping_list.appendChild(prod_container)
     });
 
     shopping_sum_label.innerHTML = `${(calculated_shopping_sum).toFixed(2)} €`
