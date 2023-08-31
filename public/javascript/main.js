@@ -27,7 +27,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_script_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/script.js */ \"./src/js/script.js\");\n/* harmony import */ var _js_script_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_script_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _scss_style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scss/style.scss */ \"./src/scss/style.scss\");\n\r\n\r\n\n\n//# sourceURL=webpack://project-template/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_script_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/script.js */ \"./src/js/script.js\");\n/* harmony import */ var _js_script_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_script_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _scss_style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scss/style.scss */ \"./src/scss/style.scss\");\n\n\n\n\n//# sourceURL=webpack://project-template/./src/index.js?");
 
 /***/ }),
 
@@ -37,7 +37,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_
   \**************************/
 /***/ (() => {
 
-eval("\n\n//# sourceURL=webpack://project-template/./src/js/script.js?");
+eval("let shoppinglist = [];\n\nclass Product {\n    constructor(product_id, product_name, product_price) {\n        this.product_id = product_id;\n        this.product_name = product_name;\n        this.product_price = product_price;\n        this.is_on_list = false;\n        this.is_open = false;\n    }\n\n}\n\nconst pizza = new Product(122, 'Pizza Magharita', 3.22)\nconst brot = new Product(123, 'Brot', 1.59)\nconst apfel = new Product(124, 'Apfel', 2.99)\n\npizza.is_on_list = true;\nbrot.is_on_list = true;\napfel.is_on_list = true;    \n\npizza.is_open = true;\nbrot.is_open = true;\napfel.is_open = true;    \n\n\nshoppinglist.push(pizza)\nshoppinglist.push(brot)\nshoppinglist.push(apfel)\n\nrender_shopping_list()\n\n\n\n\n\nfunction render_shopping_list() {\n    shoppinglist.forEach((product) => {\n        console.log(product);\n    })\n}\n\n\n//# sourceURL=webpack://project-template/./src/js/script.js?");
 
 /***/ })
 
