@@ -1,4 +1,7 @@
 let shoppinglist = [];
+const shopping_list = document.getElementById("shopping_list");
+const shopping_sum_label = document.getElementById("shopping_sum_label")
+
 
 class Product {
     constructor(product_id, product_name, product_price) {
@@ -35,7 +38,18 @@ render_shopping_list()
 
 
 function render_shopping_list() {
+    let calculated_shopping_sum = 0;
+
     shoppinglist.forEach((product) => {
         console.log(product);
-    })
+        calculated_shopping_sum += product.product_price;
+
+        let prod_cont = document.createElement('div');
+        prod_cont.innerHTML = product.product_name;
+        prod_cont.classList.add("product");
+
+        shopping_list.appendChild(prod_cont)
+    });
+
+    shopping_sum_label.innerHTML = `${(calculated_shopping_sum).toFixed(2)} €`
 }
