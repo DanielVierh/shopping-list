@@ -56,20 +56,35 @@ body {
   font-size: 2em;
 }
 
+.list-button {
+  position: fixed;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: fit-content;
+  color: white;
+  padding: 8px;
+  background-color: rgb(33, 31, 31);
+  box-shadow: 0 0 8px white, inset 0 0 3px white;
+  border-radius: 15px;
+}
+
 .modal {
+  transition: all 0.8s ease;
+}
+.modal.active {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 200%;
-  transition: all 0.8s ease;
-}
-.modal.active {
+  bottom: 0;
   height: 100vh;
   width: 100vw;
-  background-color: rgb(33, 31, 31);
+  background-color: rgb(55, 57, 61);
   z-index: 100;
-  bottom: 0;
+  border-radius: 20px;
+  margin: 0 auto;
+  animation: blend_in_modal 0.7s ease;
 }
 .modal .xbutton {
   display: none;
@@ -88,4 +103,17 @@ body {
   text-align: center;
   border-radius: 50%;
   box-shadow: inset 0 0 10px white, 0 0 10px white;
+}
+
+@keyframes blend_in_modal {
+  from {
+    top: 200%;
+    width: 20vw;
+    background-color: white;
+  }
+  to {
+    top: 0;
+    width: 100vw;
+    background-color: rgb(55, 57, 61);
+  }
 }

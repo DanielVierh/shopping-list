@@ -2,6 +2,7 @@ let shoppinglist = [];
 const shopping_list = document.getElementById("shopping_list");
 const shopping_sum_label = document.getElementById("shopping_sum_label")
 const products_modal = document.getElementById("products_modal");
+const btn_show_list = document.getElementById("btn_show_list");
 const xbuttons = document.querySelectorAll('.xbutton');
 const modals = document.querySelectorAll('.modal');
 
@@ -58,7 +59,15 @@ function render_shopping_list() {
 
 
 // Modal
-products_modal.classList.add("active");
+
+btn_show_list.addEventListener("click", ()=> {
+    products_modal.classList.add("active");
+    xbuttons.forEach((xbutton)=> {
+        xbutton.classList.add("active");
+    })
+})
+
+//products_modal.classList.add("active");
 
 
 //close Modals
