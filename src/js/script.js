@@ -13,6 +13,12 @@ class Product {
         this.product_price = product_price;
         this.is_on_list = false;
         this.is_open = false;
+        this.amount = 1;
+    }
+
+    calc_price() {
+        const price = this.amount * this.product_price;
+        return price;
     }
 
 }
@@ -29,6 +35,8 @@ pizza.is_open = true;
 brot.is_open = true;
 apfel.is_open = true;
 
+apfel.amount = 2;
+
 
 shoppinglist.push(pizza);
 shoppinglist.push(brot);
@@ -44,7 +52,9 @@ function render_shopping_list() {
     let calculated_shopping_sum = 0;
 
     shoppinglist.forEach((product) => {
-        calculated_shopping_sum += product.product_price;
+        calculated_shopping_sum += product.calc_price();
+
+        console.log(product);
 
         let prod_container = document.createElement('div');
         prod_container.innerHTML = product.product_name;
