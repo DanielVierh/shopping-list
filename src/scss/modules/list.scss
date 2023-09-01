@@ -7,9 +7,7 @@
     align-items: center;
     overflow-y: scroll;
     max-height: 70vh;
-    padding-top: 30px;
-    padding-bottom: 30px;
-
+    padding: 10px;
 
 
     .product {
@@ -25,7 +23,7 @@
         border-radius: 8px;
         padding: 3px;
         overflow: hidden;
-        word-break: break-all;
+        line-break: strict;
     }
 }
 

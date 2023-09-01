@@ -1,7 +1,9 @@
 let shoppinglist = [];
 const shopping_list = document.getElementById("shopping_list");
 const shopping_sum_label = document.getElementById("shopping_sum_label")
-
+const products_modal = document.getElementById("products_modal");
+const xbuttons = document.querySelectorAll('.xbutton');
+const modals = document.querySelectorAll('.modal');
 
 class Product {
     constructor(product_id, product_name, product_price) {
@@ -52,3 +54,20 @@ function render_shopping_list() {
 
     shopping_sum_label.innerHTML = `${(calculated_shopping_sum).toFixed(2)} €`
 }
+
+
+
+// Modal
+products_modal.classList.add("active");
+
+
+//close Modals
+xbuttons.forEach((xbutton)=> {
+    xbutton.addEventListener("click", ()=> {
+        modals.forEach((modal)=> {
+            modal.classList.remove("active")
+            xbutton.classList.remove("active")
+        })
+    })
+})
+
