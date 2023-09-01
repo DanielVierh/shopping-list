@@ -106,14 +106,16 @@ body {
 }
 
 @keyframes blend_in_modal {
-  from {
-    top: 200%;
-    width: 20vw;
+  0% {
+    top: 100%;
+    width: 0vw;
     background-color: white;
   }
-  to {
+  50% {
+    width: 20vw;
+  }
+  100% {
     top: 0;
     width: 100vw;
-    background-color: rgb(55, 57, 61);
   }
 }
