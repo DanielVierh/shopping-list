@@ -17,6 +17,7 @@ const btn_submit = document.getElementById("btn_submit");
 const xbuttons = document.querySelectorAll('.xbutton');
 const modals = document.querySelectorAll('.modal');
 
+
 //########################################
 // Class
 //########################################
@@ -45,14 +46,14 @@ const brot = new Product(123, 'Brot', 1.59);
 const apfel = new Product(124, 'Apfel', 2.99);
 const joghurt = new Product(125, 'Joghurt 3.5% Fett', 0.85)
 
-pizza.is_on_list = true;
-brot.is_on_list = true;
-apfel.is_on_list = true;
+pizza.is_on_list = false;
+brot.is_on_list = false;
+apfel.is_on_list = false;
 joghurt.is_on_list = false;
 
-pizza.is_open = true;
-brot.is_open = true;
-apfel.is_open = true;
+pizza.is_open = false;
+brot.is_open = false;
+apfel.is_open = false;
 joghurt.is_open = false;
 
 apfel.amount = 2;
@@ -71,17 +72,20 @@ render_Product_list();
 // Render Shopping list 
 //########################################
 function render_shopping_list() {
+    shopping_list.innerHTML = ''
     let calculated_shopping_sum = 0;
     // Loop shopping list
     shoppinglist.forEach((product) => {
         calculated_shopping_sum += product.calc_price();
 
-        console.log(product);
-
         let prod_container = document.createElement('div');
+        let amount_label = document.createElement("p");
+        amount_label.innerHTML = product.amount;
+        amount_label.classList.add("amount-label")
         prod_container.innerHTML = product.product_name;
         prod_container.classList.add("product");
 
+        prod_container.appendChild(amount_label)
         shopping_list.appendChild(prod_container)
     });
     shopping_sum_label.innerHTML = `${(calculated_shopping_sum).toFixed(2)} €`
@@ -91,12 +95,24 @@ function render_shopping_list() {
 // Render Product list 
 //########################################
 function render_Product_list() {
-    // Loop shopping list
+    // Loop product list
     products.forEach((product) => {
-        console.log(product);
         let prod_container = document.createElement('div');
         prod_container.innerHTML = product.product_name;
         prod_container.classList.add("product");
+        // On Click, push item to shopping list
+        prod_container.onclick = ()=> {
+            if(shoppinglist.includes(product)) {
+                product.amount++
+            }else {
+                shoppinglist.push(product);
+                product.is_on_list = true;
+                product.is_open = true;
+                console.log(shoppinglist);
+            }
+            
+            render_shopping_list();
+        }
         all_products.appendChild(prod_container)
     });
 }
@@ -124,4 +140,7 @@ xbuttons.forEach((xbutton)=> {
         })
     })
 })
+
+
+
 
