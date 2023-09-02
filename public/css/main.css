@@ -25,7 +25,7 @@ body {
 }
 
 .list-wrapper {
-  margin: 0 auto;
+  margin: 30px auto;
   border: 1px solid white;
   display: flex;
   flex-wrap: wrap;
@@ -101,7 +101,6 @@ body {
   z-index: 100;
   border-radius: 20px;
   margin: 0 auto;
-  animation: blend_in_modal 0.4s ease;
 }
 .modal .xbutton {
   display: none;
@@ -138,6 +137,8 @@ body {
 .modal .input-wrapper #btn_submit {
   height: 43px;
   border-radius: 15px;
+  background-color: rgb(33, 31, 31);
+  color: white;
 }
 
 @keyframes blend_in_modal {
