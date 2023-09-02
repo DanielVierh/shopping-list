@@ -87,7 +87,7 @@ body {
 .modal {
   position: fixed;
   top: 100%;
-  transition: all 0.8s ease;
+  transition: all 0.5s ease;
 }
 .modal.active {
   position: fixed;

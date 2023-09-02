@@ -4,6 +4,11 @@
 let shoppinglist = [];
 let products = [];
 
+let save_obj = {
+    saved_shoppinglist: [],
+    saved_products: [],
+}
+
 //########################################
 // Elements
 //########################################
@@ -39,6 +44,25 @@ class Product {
 }
 
 //########################################
+// Window Onload Load Local Storage
+//########################################
+window.onload = () => {
+    if (localStorage.getItem("stored_saveobj") != "") {
+        try {
+            save_obj = JSON.parse(localStorage.getItem("stored_saveobj"));
+            products = save_obj.saved_products;
+            shoppinglist = save_obj.saved_shoppinglist;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+function save_into_storage() {
+    localStorage.setItem('stored_saveobj', JSON.stringify(save_obj));
+}
+
+//########################################
 // Create some test products
 //########################################
 const pizza = new Product(122, 'Pizza Magharita', 3.22);
@@ -55,8 +79,6 @@ pizza.is_open = false;
 brot.is_open = false;
 apfel.is_open = false;
 joghurt.is_open = false;
-
-apfel.amount = 2;
 
 
 products.push(pizza);
@@ -95,6 +117,7 @@ function render_shopping_list() {
 // Render Product list 
 //########################################
 function render_Product_list() {
+    all_products.innerHTML = ''
     // Loop product list
     products.forEach((product) => {
         let prod_container = document.createElement('div');
@@ -141,6 +164,37 @@ xbuttons.forEach((xbutton)=> {
     })
 })
 
+//########################################
+// Add new Product
+//########################################
+
+btn_submit.addEventListener("click", ()=> {
+    const new_product_name = inp_prod.value
+    if(new_product_name.length > 0) {
+        let product_exists = false;
+        for(let i = 0; i < products.length; i++) {
+            if(new_product_name === products[i].product_name) {
+                product_exists = true;
+                break;
+            }
+        }
+        if(product_exists === false) {
+            console.log('Trage neues Produkt ein');
+            const prod = new Product(0, new_product_name, 0.0)
+            prod.is_on_list = false;
+            prod.is_open = false;
+            products.push(prod);
+            console.log('products', products);
+            save_obj.saved_products = products;
+            save_into_storage();
+            render_Product_list();
+        }else {
+            //TODO - Hier könnte man die Logik implementieren, dass das Produkt auf die Shoppinglist gesetzt wird
+        }
+
+
+    }
+})
 
 
 
