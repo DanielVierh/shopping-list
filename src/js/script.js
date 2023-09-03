@@ -16,6 +16,7 @@ const shopping_list = document.getElementById('shopping_list');
 const all_products = document.getElementById('all_products');
 const shopping_sum_label = document.getElementById('shopping_sum_label');
 const products_modal = document.getElementById('products_modal');
+const action_modal = document.getElementById('action_modal');
 const btn_show_list = document.getElementById('btn_show_list');
 const inp_prod = document.getElementById('inp_prod');
 const btn_submit = document.getElementById('btn_submit');
@@ -119,13 +120,20 @@ function render_shopping_list() {
         render_color(product, prod_container);
         // On Click, push item to shopping list
         prod_container.onclick = () => {
-            if (product.is_open) {
-                product.is_open = false;
-            } else {
-                product.is_open = true;
-            }
-            render_shopping_list();
-            render_Product_list();
+
+            //Öffne neues Modal und übergebe prod
+
+            action_modal.classList.add('active-mini')
+            activate_xbuttons();
+            // if (product.is_open) {
+            //     product.is_open = false;
+            // } else {
+            //     product.is_open = true;
+            // }
+            // save_obj.saved_shoppinglist = shoppinglist;
+            // save_into_storage();
+            // render_shopping_list();
+            // render_Product_list();
         };
 
         prod_container.appendChild(amount_label);
@@ -142,6 +150,9 @@ function render_Product_list() {
     // Loop product list
     products.forEach((product) => {
         let prod_container = document.createElement('div');
+        let amount_label = document.createElement('p');
+        amount_label.innerHTML = product.amount;
+        amount_label.classList.add('amount-label');
         prod_container.innerHTML = product.product_name;
         prod_container.classList.add('product');
         render_color(product, prod_container, 'prod');
@@ -159,11 +170,15 @@ function render_Product_list() {
                 shoppinglist.push(product);
                 product.is_on_list = true;
                 product.is_open = true;
+                save_obj.saved_shoppinglist = shoppinglist;
+                save_into_storage();
             }
 
             render_shopping_list();
             render_Product_list();
         };
+
+        prod_container.appendChild(amount_label);
         all_products.appendChild(prod_container);
     });
 }
@@ -195,10 +210,20 @@ function render_color(product, tile, list) {
 //########################################
 btn_show_list.addEventListener('click', () => {
     products_modal.classList.add('active');
+    activate_xbuttons();
+});
+
+function activate_xbuttons(){
     xbuttons.forEach((xbutton) => {
         xbutton.classList.add('active');
     });
-});
+}
+
+function hide_xbuttons(){
+    xbuttons.forEach((xbutton) => {
+        xbutton.classList.remove('active');
+    });
+}
 
 //########################################
 //close Modals
@@ -207,7 +232,8 @@ xbuttons.forEach((xbutton) => {
     xbutton.addEventListener('click', () => {
         modals.forEach((modal) => {
             modal.classList.remove('active');
-            xbutton.classList.remove('active');
+            hide_xbuttons();
+            action_modal.classList.remove('active-mini')
         });
     });
 });

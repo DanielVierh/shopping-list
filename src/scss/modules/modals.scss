@@ -15,10 +15,25 @@
         z-index: 100;
         border-radius: 20px;
         margin: 0 auto;
-        //animation: blend_in_modal .4s ease ;
-
     }
 
+
+    &.modal-small {
+        left: -500%;
+
+        &.active-mini {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 50vh;
+            width: 70vw;
+            z-index: 100;
+            background-color: rgb(174, 174, 174);
+            color: black;
+            border-radius: 15px;
+            box-shadow: 0 0 20px black;
+        }
+    }
 
 
     .xbutton {
@@ -29,7 +44,7 @@
             position: fixed;
             left: 50%;
             transform: translateX(-50%);
-            bottom: 20px;
+            bottom: 10px;
             width: 40px;
             height: 40px;
             background-color: red;
@@ -49,7 +64,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        
+
         #inp_prod {
             height: 40px;
             border-radius: 15px;
@@ -60,28 +75,11 @@
         }
 
         #btn_submit {
-          height: 43px;  
+          height: 43px;
           border-radius: 15px;
           background-color: $color-black;
           color: white;
         }
 
-    }
-}
-
-@keyframes blend_in_modal {
-    0% {
-        top: 100%;
-        width: 0vw;
-        background-color: white;
-    }
-
-    50% {
-        width: 20vw;
-    }
-
-    100% {
-        top: 0;
-        width: 100vw;
     }
 }
