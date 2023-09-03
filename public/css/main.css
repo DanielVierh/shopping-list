@@ -76,7 +76,7 @@ body {
 
 .list-button {
   position: fixed;
-  bottom: 10%;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   width: fit-content;
@@ -113,7 +113,7 @@ body {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 60px;
+  bottom: 20px;
   width: 40px;
   height: 40px;
   background-color: red;
@@ -125,7 +125,7 @@ body {
   box-shadow: inset 0 0 10px white, 0 0 10px white;
 }
 .modal .input-wrapper {
-  margin-top: 100px;
+  margin-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
