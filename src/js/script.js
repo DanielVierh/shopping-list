@@ -9,6 +9,8 @@ let save_obj = {
     saved_products: [],
 };
 
+let current_product;
+
 //########################################
 // Elements
 //########################################
@@ -16,6 +18,8 @@ const shopping_list = document.getElementById('shopping_list');
 const all_products = document.getElementById('all_products');
 const shopping_sum_label = document.getElementById('shopping_sum_label');
 const products_modal = document.getElementById('products_modal');
+const action_check = document.getElementById('action_check');
+const action_delete = document.getElementById('action_delete');
 const action_modal = document.getElementById('action_modal');
 const btn_show_list = document.getElementById('btn_show_list');
 const inp_prod = document.getElementById('inp_prod');
@@ -120,20 +124,10 @@ function render_shopping_list() {
         render_color(product, prod_container);
         // On Click, push item to shopping list
         prod_container.onclick = () => {
-
             //Öffne neues Modal und übergebe prod
-
-            action_modal.classList.add('active-mini')
+            action_modal.classList.add('active-mini');
             activate_xbuttons();
-            // if (product.is_open) {
-            //     product.is_open = false;
-            // } else {
-            //     product.is_open = true;
-            // }
-            // save_obj.saved_shoppinglist = shoppinglist;
-            // save_into_storage();
-            // render_shopping_list();
-            // render_Product_list();
+            current_product = product;
         };
 
         prod_container.appendChild(amount_label);
@@ -141,6 +135,48 @@ function render_shopping_list() {
     });
     shopping_sum_label.innerHTML = `${calculated_shopping_sum.toFixed(2)} €`;
 }
+
+// Toggle check for product
+action_check.addEventListener("click", ()=> {
+    if (current_product.is_open) {
+        current_product.is_open = false;
+    } else {
+        current_product.is_open = true;
+    }
+    save_obj.saved_shoppinglist = shoppinglist;
+    save_into_storage();
+    render_shopping_list();
+    render_Product_list();
+    close_all_modals();
+})
+
+action_delete.addEventListener('click', ()=> {
+    if (current_product.is_on_list) {
+        // uncheck on productlist
+        for(let i = 0; i < products.length; i++) {
+            if(current_product.product_name === products[i].product_name) {
+                products[i].is_on_list = false;
+                products[i].is_open = false;
+            }
+        }
+
+        // Delete from shoppinglist
+        for(let i = 0; i < shoppinglist.length; i++) {
+            if(current_product.product_name === shoppinglist[i].product_name) {
+                shoppinglist.splice(i, 1);
+            }
+        }
+    }
+
+    save_obj.saved_shoppinglist = shoppinglist;
+    save_obj.saved_products = products;
+    save_into_storage();
+    render_shopping_list();
+    render_Product_list();
+    close_all_modals();
+})
+
+
 
 //########################################
 // Render Product list
@@ -161,8 +197,10 @@ function render_Product_list() {
         prod_container.onclick = () => {
             // If product is already on list
             if (shoppinglist.includes(product)) {
-                const decision = window.confirm(`Soll das Produkt ${product.product_name} nochmals auf die Einkaufsliste gesetzt werden?`)
-                if(decision){
+                const decision = window.confirm(
+                    `Soll das Produkt ${product.product_name} nochmals auf die Einkaufsliste gesetzt werden? Damit ändert sich auch der Preis`,
+                );
+                if (decision) {
                     product.amount++;
                 }
                 // Else add to list
@@ -187,22 +225,19 @@ function render_Product_list() {
 // Colorize Tile if is open
 //########################################
 function render_color(product, tile, list) {
-
-    if(list === 'prod') {
+    if (list === 'prod') {
         if (product.is_on_list === true) {
             tile.classList.add('on-list');
         } else {
             tile.classList.remove('on-list');
         }
-    }else {
+    } else {
         if (product.is_open === true) {
             tile.classList.add('item-open');
         } else {
             tile.classList.remove('item-open');
         }
     }
-
-
 }
 
 //########################################
@@ -213,13 +248,13 @@ btn_show_list.addEventListener('click', () => {
     activate_xbuttons();
 });
 
-function activate_xbuttons(){
+function activate_xbuttons() {
     xbuttons.forEach((xbutton) => {
         xbutton.classList.add('active');
     });
 }
 
-function hide_xbuttons(){
+function hide_xbuttons() {
     xbuttons.forEach((xbutton) => {
         xbutton.classList.remove('active');
     });
@@ -230,13 +265,17 @@ function hide_xbuttons(){
 //########################################
 xbuttons.forEach((xbutton) => {
     xbutton.addEventListener('click', () => {
-        modals.forEach((modal) => {
-            modal.classList.remove('active');
-            hide_xbuttons();
-            action_modal.classList.remove('active-mini')
-        });
+        close_all_modals()
     });
 });
+
+function close_all_modals() {
+    modals.forEach((modal) => {
+        modal.classList.remove('active');
+        hide_xbuttons();
+        action_modal.classList.remove('active-mini');
+    });
+}
 
 //########################################
 // Add new Product
