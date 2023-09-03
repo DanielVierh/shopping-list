@@ -118,7 +118,7 @@ function render_shopping_list() {
         amount_label.classList.add("amount-label")
         prod_container.innerHTML = product.product_name;
         prod_container.classList.add("product");
-        prod_container.classList.add(render_color(product))
+        render_color(product, prod_container);
 
         prod_container.appendChild(amount_label)
         shopping_list.appendChild(prod_container)
@@ -136,7 +136,7 @@ function render_Product_list() {
         let prod_container = document.createElement('div');
         prod_container.innerHTML = product.product_name;
         prod_container.classList.add("product");
-        prod_container.classList.add(render_color(product))
+        render_color(product, prod_container);
         
         // On Click, push item to shopping list
         prod_container.onclick = () => {
@@ -158,9 +158,11 @@ function render_Product_list() {
 //########################################
 // Colorize Tile if is open
 //########################################
-function render_color(product) {
+function render_color(product, tile) {
     if(product.is_open === true) {
-        return 'on-list'
+        tile.classList.add('on-list')
+    }else {
+        tile.classList.remove('on-list')
     }
 }
 
@@ -215,7 +217,7 @@ function add_new_product() {
             }
         }
         if (product_exists === false) {
-            const prod = new Product(0, new_product_name, 0.00)
+            const prod = new Product(uniqueID_Generator(), new_product_name, 0.00)
             prod.is_on_list = false;
             prod.is_open = false;
             products.push(prod);
@@ -229,3 +231,52 @@ function add_new_product() {
     }
 }
 
+
+function uniqueID_Generator() {
+    const rndStuff = [
+        'A',
+        'B',
+        'C',
+        'D',
+        'E',
+        'F',
+        'G',
+        'H',
+        'I',
+        'J',
+        'K',
+        'L',
+        'M',
+        'N',
+        'O',
+        'P',
+        'Q',
+        'R',
+        'S',
+        'T',
+        'U',
+        'V',
+        'W',
+        'X',
+        'Y',
+        'Z',
+        '$',
+        '!',
+        '1',
+        '2',
+        '3',
+        '4',
+        '8',
+        '7',
+        '6',
+        '5',
+        '9',
+        '0',
+        '#',
+    ];
+    let key = '';
+    for (let i = 1; i <= 36; i++) {
+        key += rndStuff[parseInt(Math.random() * rndStuff.length)];
+    }
+    return key;
+}
