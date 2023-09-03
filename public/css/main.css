@@ -38,7 +38,7 @@ body {
 .list-wrapper .product {
   width: 120px;
   height: 120px;
-  background-color: tomato;
+  background-color: gray;
   margin: 2px;
   color: white;
   display: flex;
@@ -64,6 +64,9 @@ body {
   align-items: center;
   font-weight: bold;
   text-align: center;
+}
+.list-wrapper .product.on-list {
+  background-color: tomato;
 }
 
 .shopping-sum {

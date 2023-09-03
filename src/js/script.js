@@ -35,59 +35,66 @@ class Product {
         this.is_open = false;
         this.amount = 1;
     }
-
-    calc_price() {
-        const price = this.amount * this.product_price;
-        return price;
-    }
-
 }
 
 //########################################
 // Window Onload Load Local Storage
 //########################################
-window.onload = () => {
-    if (localStorage.getItem("stored_saveobj") != "") {
+window.onload = init();
+
+function init() {
+    load_local_storage();
+    render_shopping_list();
+    render_Product_list();
+    console.log('Producta', products);
+}
+
+function load_local_storage() {
+    if (localStorage.getItem("stored_shopping_saveobj") != "") {
         try {
-            save_obj = JSON.parse(localStorage.getItem("stored_saveobj"));
+            save_obj = JSON.parse(localStorage.getItem("stored_shopping_saveobj"));
             products = save_obj.saved_products;
             shoppinglist = save_obj.saved_shoppinglist;
         } catch (error) {
             console.log(error);
+            save_obj = {
+                saved_shoppinglist: [],
+                saved_products: [],
+            }
+            save_obj.saved_products = products;
+            save_obj.saved_shoppinglist = shoppinglist;
         }
     }
 }
 
 function save_into_storage() {
-    localStorage.setItem('stored_saveobj', JSON.stringify(save_obj));
+    localStorage.setItem('stored_shopping_saveobj', JSON.stringify(save_obj));
 }
 
 //########################################
 // Create some test products
 //########################################
-const pizza = new Product(122, 'Pizza Magharita', 3.22);
-const brot = new Product(123, 'Brot', 1.59);
-const apfel = new Product(124, 'Apfel', 2.99);
-const joghurt = new Product(125, 'Joghurt 3.5% Fett', 0.85)
+// const pizza = new Product(122, 'Pizza Magharita', 3.22);
+// const brot = new Product(123, 'Brot', 1.59);
+// const apfel = new Product(124, 'Apfel', 2.99);
+// const joghurt = new Product(125, 'Joghurt 3.5% Fett', 0.85)
 
-pizza.is_on_list = false;
-brot.is_on_list = false;
-apfel.is_on_list = false;
-joghurt.is_on_list = false;
+// pizza.is_on_list = false;
+// brot.is_on_list = false;
+// apfel.is_on_list = false;
+// joghurt.is_on_list = false;
 
-pizza.is_open = false;
-brot.is_open = false;
-apfel.is_open = false;
-joghurt.is_open = false;
+// pizza.is_open = false;
+// brot.is_open = false;
+// apfel.is_open = false;
+// joghurt.is_open = false;
 
 
-products.push(pizza);
-products.push(brot);
-products.push(apfel);
-products.push(joghurt);
+// products.push(pizza);
+// products.push(brot);
+// products.push(apfel);
+// products.push(joghurt);
 
-render_shopping_list();
-render_Product_list();
 
 
 //########################################
@@ -98,7 +105,12 @@ function render_shopping_list() {
     let calculated_shopping_sum = 0;
     // Loop shopping list
     shoppinglist.forEach((product) => {
-        calculated_shopping_sum += product.calc_price();
+        try {
+            const price = product.amount * product.product_price;
+            calculated_shopping_sum += price;
+        } catch (error) {
+            console.log('Calc_error', error);
+        }
 
         let prod_container = document.createElement('div');
         let amount_label = document.createElement("p");
@@ -106,6 +118,7 @@ function render_shopping_list() {
         amount_label.classList.add("amount-label")
         prod_container.innerHTML = product.product_name;
         prod_container.classList.add("product");
+        prod_container.classList.add(render_color(product))
 
         prod_container.appendChild(amount_label)
         shopping_list.appendChild(prod_container)
@@ -123,30 +136,41 @@ function render_Product_list() {
         let prod_container = document.createElement('div');
         prod_container.innerHTML = product.product_name;
         prod_container.classList.add("product");
+        prod_container.classList.add(render_color(product))
+        
         // On Click, push item to shopping list
-        prod_container.onclick = ()=> {
-            if(shoppinglist.includes(product)) {
+        prod_container.onclick = () => {
+            if (shoppinglist.includes(product)) {
                 product.amount++
-            }else {
+            } else {
                 shoppinglist.push(product);
                 product.is_on_list = true;
                 product.is_open = true;
-                console.log(shoppinglist);
             }
-            
+
             render_shopping_list();
+            render_Product_list();
         }
         all_products.appendChild(prod_container)
     });
+}
+
+//########################################
+// Colorize Tile if is open
+//########################################
+function render_color(product) {
+    if(product.is_open === true) {
+        return 'on-list'
+    }
 }
 
 
 //########################################
 // Modal
 //########################################
-btn_show_list.addEventListener("click", ()=> {
+btn_show_list.addEventListener("click", () => {
     products_modal.classList.add("active");
-    xbuttons.forEach((xbutton)=> {
+    xbuttons.forEach((xbutton) => {
         xbutton.classList.add("active");
     })
 })
@@ -155,9 +179,9 @@ btn_show_list.addEventListener("click", ()=> {
 //########################################
 //close Modals
 //########################################
-xbuttons.forEach((xbutton)=> {
-    xbutton.addEventListener("click", ()=> {
-        modals.forEach((modal)=> {
+xbuttons.forEach((xbutton) => {
+    xbutton.addEventListener("click", () => {
+        modals.forEach((modal) => {
             modal.classList.remove("active")
             xbutton.classList.remove("active")
         })
@@ -168,33 +192,40 @@ xbuttons.forEach((xbutton)=> {
 // Add new Product
 //########################################
 
-btn_submit.addEventListener("click", ()=> {
+btn_submit.addEventListener("click", () => {
+    add_new_product();
+})
+
+
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        add_new_product();
+    }
+});
+
+
+function add_new_product() {
     const new_product_name = inp_prod.value
-    if(new_product_name.length > 0) {
+    if (new_product_name.length > 0) {
         let product_exists = false;
-        for(let i = 0; i < products.length; i++) {
-            if(new_product_name === products[i].product_name) {
+        for (let i = 0; i < products.length; i++) {
+            if (new_product_name === products[i].product_name) {
                 product_exists = true;
                 break;
             }
         }
-        if(product_exists === false) {
-            console.log('Trage neues Produkt ein');
-            const prod = new Product(0, new_product_name, 0.0)
+        if (product_exists === false) {
+            const prod = new Product(0, new_product_name, 0.00)
             prod.is_on_list = false;
             prod.is_open = false;
             products.push(prod);
-            console.log('products', products);
             save_obj.saved_products = products;
+            inp_prod.value = '';
             save_into_storage();
             render_Product_list();
-        }else {
+        } else {
             //TODO - Hier könnte man die Logik implementieren, dass das Produkt auf die Shoppinglist gesetzt wird
         }
-
-
     }
-})
-
-
+}
 
