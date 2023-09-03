@@ -17,6 +17,7 @@ let current_product;
 const shopping_list = document.getElementById('shopping_list');
 const all_products = document.getElementById('all_products');
 const shopping_sum_label = document.getElementById('shopping_sum_label');
+const prod_modal_label = document.getElementById('prod_modal_label');
 const products_modal = document.getElementById('products_modal');
 const action_check = document.getElementById('action_check');
 const action_delete = document.getElementById('action_delete');
@@ -128,6 +129,7 @@ function render_shopping_list() {
             action_modal.classList.add('active-mini');
             activate_xbuttons();
             current_product = product;
+            prod_modal_label.innerText = product.product_name;
         };
 
         prod_container.appendChild(amount_label);

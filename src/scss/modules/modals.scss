@@ -25,7 +25,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            height: 50vh;
+            height: 60vh;
             width: 70vw;
             z-index: 101;
             background-color: rgb(174, 174, 174);
@@ -36,6 +36,12 @@
             align-items: center;
             flex-direction: column;
 
+        }
+
+        #prod_modal_label {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: black;
         }
 
         .option-button {
