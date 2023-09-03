@@ -79,29 +79,6 @@ function save_into_storage() {
 }
 
 //########################################
-// Create some test products
-//########################################
-// const pizza = new Product(122, 'Pizza Magharita', 3.22);
-// const brot = new Product(123, 'Brot', 1.59);
-// const apfel = new Product(124, 'Apfel', 2.99);
-// const joghurt = new Product(125, 'Joghurt 3.5% Fett', 0.85)
-
-// pizza.is_on_list = false;
-// brot.is_on_list = false;
-// apfel.is_on_list = false;
-// joghurt.is_on_list = false;
-
-// pizza.is_open = false;
-// brot.is_open = false;
-// apfel.is_open = false;
-// joghurt.is_open = false;
-
-// products.push(pizza);
-// products.push(brot);
-// products.push(apfel);
-// products.push(joghurt);
-
-//########################################
 // Render Shopping list
 //########################################
 function render_shopping_list() {
@@ -138,12 +115,14 @@ function render_shopping_list() {
     shopping_sum_label.innerHTML = `${calculated_shopping_sum.toFixed(2)} €`;
 }
 
-// Toggle check for product
+//! Toggle check for product
 action_check.addEventListener("click", ()=> {
     if (current_product.is_open) {
         current_product.is_open = false;
+        set_product_at_the_end();
     } else {
         current_product.is_open = true;
+        set_product_at_the_start();
     }
     save_obj.saved_shoppinglist = shoppinglist;
     save_into_storage();
@@ -239,6 +218,29 @@ function render_color(product, tile, list) {
         } else {
             tile.classList.remove('item-open');
         }
+    }
+}
+
+function set_product_at_the_end() {
+    const product = current_product;
+    const arrIndex = shoppinglist.indexOf(product);
+    const lastPos = shoppinglist.length;
+    if (arrIndex === -1) {
+        shoppinglist.splice(0, 0, product);
+    } else {
+        shoppinglist.splice(arrIndex, 1);
+        shoppinglist.splice(lastPos, 0, product);
+    }
+}
+
+function set_product_at_the_start() {
+    const product = current_product;
+    const arrIndex = shoppinglist.indexOf(product);
+    if (arrIndex === -1) {
+        shoppinglist.splice(0, 0, product);
+    } else {
+        shoppinglist.splice(arrIndex, 1);
+        shoppinglist.splice(0, 0, product);
     }
 }
 
