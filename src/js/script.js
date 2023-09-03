@@ -7,21 +7,20 @@ let products = [];
 let save_obj = {
     saved_shoppinglist: [],
     saved_products: [],
-}
+};
 
 //########################################
 // Elements
 //########################################
-const shopping_list = document.getElementById("shopping_list");
-const all_products = document.getElementById("all_products");
-const shopping_sum_label = document.getElementById("shopping_sum_label")
-const products_modal = document.getElementById("products_modal");
-const btn_show_list = document.getElementById("btn_show_list");
-const inp_prod = document.getElementById("inp_prod");
-const btn_submit = document.getElementById("btn_submit");
+const shopping_list = document.getElementById('shopping_list');
+const all_products = document.getElementById('all_products');
+const shopping_sum_label = document.getElementById('shopping_sum_label');
+const products_modal = document.getElementById('products_modal');
+const btn_show_list = document.getElementById('btn_show_list');
+const inp_prod = document.getElementById('inp_prod');
+const btn_submit = document.getElementById('btn_submit');
 const xbuttons = document.querySelectorAll('.xbutton');
 const modals = document.querySelectorAll('.modal');
-
 
 //########################################
 // Class
@@ -50,9 +49,11 @@ function init() {
 }
 
 function load_local_storage() {
-    if (localStorage.getItem("stored_shopping_saveobj") != "") {
+    if (localStorage.getItem('stored_shopping_saveobj') != '') {
         try {
-            save_obj = JSON.parse(localStorage.getItem("stored_shopping_saveobj"));
+            save_obj = JSON.parse(
+                localStorage.getItem('stored_shopping_saveobj'),
+            );
             products = save_obj.saved_products;
             shoppinglist = save_obj.saved_shoppinglist;
         } catch (error) {
@@ -60,7 +61,7 @@ function load_local_storage() {
             save_obj = {
                 saved_shoppinglist: [],
                 saved_products: [],
-            }
+            };
             save_obj.saved_products = products;
             save_obj.saved_shoppinglist = shoppinglist;
         }
@@ -89,19 +90,16 @@ function save_into_storage() {
 // apfel.is_open = false;
 // joghurt.is_open = false;
 
-
 // products.push(pizza);
 // products.push(brot);
 // products.push(apfel);
 // products.push(joghurt);
 
-
-
 //########################################
-// Render Shopping list 
+// Render Shopping list
 //########################################
 function render_shopping_list() {
-    shopping_list.innerHTML = ''
+    shopping_list.innerHTML = '';
     let calculated_shopping_sum = 0;
     // Loop shopping list
     shoppinglist.forEach((product) => {
@@ -113,35 +111,44 @@ function render_shopping_list() {
         }
 
         let prod_container = document.createElement('div');
-        let amount_label = document.createElement("p");
+        let amount_label = document.createElement('p');
         amount_label.innerHTML = product.amount;
-        amount_label.classList.add("amount-label")
+        amount_label.classList.add('amount-label');
         prod_container.innerHTML = product.product_name;
-        prod_container.classList.add("product");
+        prod_container.classList.add('product');
         render_color(product, prod_container);
+        // On Click, push item to shopping list
+        prod_container.onclick = () => {
+            if (product.is_open) {
+                product.is_open = false;
+            } else {
+                product.is_open = true;
+            }
+            render_shopping_list();
+        };
 
-        prod_container.appendChild(amount_label)
-        shopping_list.appendChild(prod_container)
+        prod_container.appendChild(amount_label);
+        shopping_list.appendChild(prod_container);
     });
-    shopping_sum_label.innerHTML = `${(calculated_shopping_sum).toFixed(2)} €`
+    shopping_sum_label.innerHTML = `${calculated_shopping_sum.toFixed(2)} €`;
 }
 
 //########################################
-// Render Product list 
+// Render Product list
 //########################################
 function render_Product_list() {
-    all_products.innerHTML = ''
+    all_products.innerHTML = '';
     // Loop product list
     products.forEach((product) => {
         let prod_container = document.createElement('div');
         prod_container.innerHTML = product.product_name;
-        prod_container.classList.add("product");
+        prod_container.classList.add('product');
         render_color(product, prod_container);
-        
+
         // On Click, push item to shopping list
         prod_container.onclick = () => {
             if (shoppinglist.includes(product)) {
-                product.amount++
+                product.amount++;
             } else {
                 shoppinglist.push(product);
                 product.is_on_list = true;
@@ -150,8 +157,8 @@ function render_Product_list() {
 
             render_shopping_list();
             render_Product_list();
-        }
-        all_products.appendChild(prod_container)
+        };
+        all_products.appendChild(prod_container);
     });
 }
 
@@ -159,45 +166,42 @@ function render_Product_list() {
 // Colorize Tile if is open
 //########################################
 function render_color(product, tile) {
-    if(product.is_open === true) {
-        tile.classList.add('on-list')
-    }else {
-        tile.classList.remove('on-list')
+    if (product.is_open === true) {
+        tile.classList.add('on-list');
+    } else {
+        tile.classList.remove('on-list');
     }
 }
-
 
 //########################################
 // Modal
 //########################################
-btn_show_list.addEventListener("click", () => {
-    products_modal.classList.add("active");
+btn_show_list.addEventListener('click', () => {
+    products_modal.classList.add('active');
     xbuttons.forEach((xbutton) => {
-        xbutton.classList.add("active");
-    })
-})
-
+        xbutton.classList.add('active');
+    });
+});
 
 //########################################
 //close Modals
 //########################################
 xbuttons.forEach((xbutton) => {
-    xbutton.addEventListener("click", () => {
+    xbutton.addEventListener('click', () => {
         modals.forEach((modal) => {
-            modal.classList.remove("active")
-            xbutton.classList.remove("active")
-        })
-    })
-})
+            modal.classList.remove('active');
+            xbutton.classList.remove('active');
+        });
+    });
+});
 
 //########################################
 // Add new Product
 //########################################
 
-btn_submit.addEventListener("click", () => {
+btn_submit.addEventListener('click', () => {
     add_new_product();
-})
-
+});
 
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
@@ -205,9 +209,8 @@ window.addEventListener('keydown', (e) => {
     }
 });
 
-
 function add_new_product() {
-    const new_product_name = inp_prod.value
+    const new_product_name = inp_prod.value;
     if (new_product_name.length > 0) {
         let product_exists = false;
         for (let i = 0; i < products.length; i++) {
@@ -217,7 +220,11 @@ function add_new_product() {
             }
         }
         if (product_exists === false) {
-            const prod = new Product(uniqueID_Generator(), new_product_name, 0.00)
+            const prod = new Product(
+                uniqueID_Generator(),
+                new_product_name,
+                0.0,
+            );
             prod.is_on_list = false;
             prod.is_open = false;
             products.push(prod);
@@ -230,7 +237,6 @@ function add_new_product() {
         }
     }
 }
-
 
 function uniqueID_Generator() {
     const rndStuff = [
