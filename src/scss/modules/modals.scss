@@ -27,11 +27,28 @@
             transform: translate(-50%, -50%);
             height: 50vh;
             width: 70vw;
-            z-index: 100;
+            z-index: 101;
             background-color: rgb(174, 174, 174);
             color: black;
             border-radius: 15px;
             box-shadow: 0 0 20px black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+        }
+
+        .option-button {
+            width: 140px;
+            height: 70px;
+            background-color: black;
+            color: white;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            letter-spacing: 1.5px;
         }
     }
 
