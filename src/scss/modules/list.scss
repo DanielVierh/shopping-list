@@ -26,6 +26,7 @@
         overflow: hidden;
         line-break: strict;
         position: relative;
+        transition: all .4s ease;
 
         .amount-label{
             position: absolute;
@@ -43,6 +44,10 @@
         }
 
         &.on-list {
+            background-color: tomato;
+        }
+
+        &.item-open {
             background-color: tomato;
         }
     }
@@ -66,4 +71,3 @@
     border-radius: 15px;
     z-index: 10;
 }
-

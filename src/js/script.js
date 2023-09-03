@@ -125,6 +125,7 @@ function render_shopping_list() {
                 product.is_open = true;
             }
             render_shopping_list();
+            render_Product_list();
         };
 
         prod_container.appendChild(amount_label);
@@ -143,12 +144,17 @@ function render_Product_list() {
         let prod_container = document.createElement('div');
         prod_container.innerHTML = product.product_name;
         prod_container.classList.add('product');
-        render_color(product, prod_container);
+        render_color(product, prod_container, 'prod');
 
         // On Click, push item to shopping list
         prod_container.onclick = () => {
+            // If product is already on list
             if (shoppinglist.includes(product)) {
-                product.amount++;
+                const decision = window.confirm(`Soll das Produkt ${product.product_name} nochmals auf die Einkaufsliste gesetzt werden?`)
+                if(decision){
+                    product.amount++;
+                }
+                // Else add to list
             } else {
                 shoppinglist.push(product);
                 product.is_on_list = true;
@@ -165,12 +171,23 @@ function render_Product_list() {
 //########################################
 // Colorize Tile if is open
 //########################################
-function render_color(product, tile) {
-    if (product.is_open === true) {
-        tile.classList.add('on-list');
-    } else {
-        tile.classList.remove('on-list');
+function render_color(product, tile, list) {
+
+    if(list === 'prod') {
+        if (product.is_on_list === true) {
+            tile.classList.add('on-list');
+        } else {
+            tile.classList.remove('on-list');
+        }
+    }else {
+        if (product.is_open === true) {
+            tile.classList.add('item-open');
+        } else {
+            tile.classList.remove('item-open');
+        }
     }
+
+
 }
 
 //########################################

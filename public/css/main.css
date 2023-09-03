@@ -51,6 +51,7 @@ body {
   overflow: hidden;
   line-break: strict;
   position: relative;
+  transition: all 0.4s ease;
 }
 .list-wrapper .product .amount-label {
   position: absolute;
@@ -67,6 +68,9 @@ body {
   text-align: center;
 }
 .list-wrapper .product.on-list {
+  background-color: tomato;
+}
+.list-wrapper .product.item-open {
   background-color: tomato;
 }
 
