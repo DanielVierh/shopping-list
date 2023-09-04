@@ -313,7 +313,7 @@ function add_new_product() {
             );
             prod.is_on_list = false;
             prod.is_open = false;
-            products.push(prod);
+            products.unshift(prod);
             save_obj.saved_products = products;
             inp_prod.value = '';
             save_into_storage();
