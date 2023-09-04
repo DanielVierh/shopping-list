@@ -22,11 +22,20 @@ const products_modal = document.getElementById('products_modal');
 const action_check = document.getElementById('action_check');
 const action_delete = document.getElementById('action_delete');
 const action_modal = document.getElementById('action_modal');
+const action_edit = document.getElementById('action_edit');
 const btn_show_list = document.getElementById('btn_show_list');
 const inp_prod = document.getElementById('inp_prod');
 const btn_submit = document.getElementById('btn_submit');
+const edit_modal = document.getElementById('edit_modal');
+const inp_price = document.getElementById('inp_price');
+const inp_amount = document.getElementById('inp_amount');
+const btn_submit_edit = document.getElementById('btn_submit_edit');
+
+
+
 const xbuttons = document.querySelectorAll('.xbutton');
 const modals = document.querySelectorAll('.modal');
+const productLabels = document.querySelectorAll('.productLabel');
 
 //########################################
 // Class
@@ -52,6 +61,7 @@ function init() {
     render_shopping_list();
     render_Product_list();
     console.log('Producta', products);
+    console.log('shoppinglist', shoppinglist);
 }
 
 function load_local_storage() {
@@ -95,7 +105,11 @@ function render_shopping_list() {
 
         let prod_container = document.createElement('div');
         let amount_label = document.createElement('p');
-        amount_label.innerHTML = product.amount;
+        if(product.product_price > 0) {
+            amount_label.innerHTML = `${product.amount} x ${product.product_price}€`;
+        }else {
+            amount_label.innerHTML = product.amount;
+        }
         amount_label.classList.add('amount-label');
         prod_container.innerHTML = product.product_name;
         prod_container.classList.add('product');
@@ -129,6 +143,17 @@ action_check.addEventListener("click", ()=> {
     render_shopping_list();
     render_Product_list();
     close_all_modals();
+})
+
+//? Open Edit Modal
+action_edit.addEventListener("click", ()=> {
+    edit_modal.classList.add('active')
+    activate_xbuttons();
+    productLabels.forEach((prod_label) => {
+        prod_label.innerText = current_product.product_name;
+    });
+    inp_price.value = current_product.product_price;
+    inp_amount.value = current_product.amount;
 })
 
 action_delete.addEventListener('click', ()=> {
@@ -178,12 +203,14 @@ function render_Product_list() {
         prod_container.onclick = () => {
             // If product is already on list
             if (shoppinglist.includes(product)) {
-                const decision = window.confirm(
-                    `Soll das Produkt ${product.product_name} nochmals auf die Einkaufsliste gesetzt werden? Damit ändert sich auch der Preis`,
-                );
-                if (decision) {
-                    product.amount++;
-                }
+                // const decision = window.confirm(
+                //     `Soll das Produkt ${product.product_name} nochmals auf die Einkaufsliste gesetzt werden? Damit ändert sich auch der Preis`,
+                // );
+                // if (decision) {
+                //     product.amount++;
+                // }
+                //? Trigger for Edit Menu
+
                 // Else add to list
             } else {
                 shoppinglist.push(product);
@@ -201,6 +228,58 @@ function render_Product_list() {
         all_products.appendChild(prod_container);
     });
 }
+
+//########################################
+// Save Edit changes
+//########################################
+btn_submit_edit.addEventListener("click", ()=> {
+    if(inp_amount.value !== '') {
+        let new_amount = inp_amount.value;
+        new_amount.replace(',', '.');
+        parseFloat(new_amount);
+        current_product.amount = new_amount;
+
+        for(let i = 0; i < products.length; i++) {
+            if(current_product.product_name === products[i].product_name) {
+                products[i].amount = new_amount;
+            }
+        }
+
+        for(let i = 0; i < shoppinglist.length; i++) {
+            if(current_product.product_name === shoppinglist[i].product_name) {
+                shoppinglist[i].amount = new_amount;
+            }
+        }
+    }
+
+    if(inp_price.value !== '') {
+        let new_price = inp_price.value;
+        new_price.replace(',', '.');
+        parseFloat(new_price);
+        current_product.product_price = new_price;
+
+        for(let i = 0; i < products.length; i++) {
+            if(current_product.product_name === products[i].product_name) {
+                products[i].product_price = new_price;
+            }
+        }
+
+        for(let i = 0; i < shoppinglist.length; i++) {
+            if(current_product.product_name === shoppinglist[i].product_name) {
+                shoppinglist[i].product_price = new_price;
+            }
+        }
+    }
+
+    save_obj.saved_products = products;
+    save_obj.saved_shoppinglist = shoppinglist;
+    save_into_storage();
+    render_Product_list();
+    render_shopping_list();
+    close_all_modals();
+
+})
+
 
 //########################################
 // Colorize Tile if is open

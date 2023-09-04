@@ -21,19 +21,40 @@
         <div class="xbutton">X</div>
         <!-- Input -->
         <div class="input-wrapper">
-            <input type="text" id="inp_prod" placeholder="Produkt eingeben...">
-            <input type="submit" value="Hinzufügen" id="btn_submit">
+            <input type="text" id="inp_prod" placeholder="Produkt eingeben..." class="input-field">
+            <input type="submit" value="Hinzufügen" id="btn_submit" class="submit-button">
         </div>
         <div class="list-wrapper" id="all_products"></div>
     </div>
 
 
+    <!-- Product Action Modal -->
     <div class="modal modal-small" id="action_modal">
         <div class="xbutton">X</div>
-        <div id="prod_modal_label">feffe</div>
+        <div id="prod_modal_label"></div>
         <div class="option-button" id="action_check">erledigt ✅</div>
         <div class="option-button" id="action_delete">löschen 🗑️</div>
-        <div class="option-button">bearbeiten 🖊️</div>
+        <div class="option-button" id="action_edit">bearbeiten 🖊️</div>
+    </div>
+
+
+    <!-- Edit Modal -->
+    <div class="modal" id="edit_modal">
+        <div class="xbutton">X</div>
+        <h2 class="productLabel"></h2>
+        <div class="input-wrapper">
+            <label for="inp_price">Preis</label>
+            <input type="text" id="inp_price" class="input-field">
+        </div>
+
+        <div class="input-wrapper">
+            <label for="inp_amount">Menge</label>
+            <input type="text" id="inp_amount" class="input-field">
+        </div>
+
+        <div class="input-wrapper">
+            <input type="submit" id="btn_submit_edit" value="Speichern" class="submit-button">
+        </div>
     </div>
 
 
