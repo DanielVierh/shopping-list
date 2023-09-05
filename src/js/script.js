@@ -406,6 +406,8 @@ function add_new_product() {
     }
 }
 
+
+
 function uniqueID_Generator() {
     const rndStuff = [
         'A',
