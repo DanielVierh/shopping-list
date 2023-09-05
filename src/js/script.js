@@ -107,6 +107,7 @@ function render_shopping_list() {
         let amount_label = document.createElement('p');
         if(product.product_price > 0) {
             amount_label.innerHTML = `${product.amount} x ${product.product_price}€`;
+            amount_label.classList.add("bigger-label")
         }else {
             amount_label.innerHTML = product.amount;
         }
@@ -234,8 +235,8 @@ function render_Product_list() {
 //########################################
 btn_submit_edit.addEventListener("click", ()=> {
     if(inp_amount.value !== '') {
-        let new_amount = inp_amount.value;
-        new_amount.replace(',', '.');
+        let new_amount_raw = inp_amount.value;
+        let new_amount = new_amount_raw.replace(',', '.');
         parseFloat(new_amount);
         current_product.amount = new_amount;
 
@@ -253,8 +254,8 @@ btn_submit_edit.addEventListener("click", ()=> {
     }
 
     if(inp_price.value !== '') {
-        let new_price = inp_price.value;
-        new_price.replace(',', '.');
+        let new_price_raw = inp_price.value;
+        let new_price = new_price_raw.replace(',', '.');
         parseFloat(new_price);
         current_product.product_price = new_price;
 
