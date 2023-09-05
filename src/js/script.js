@@ -155,6 +155,7 @@ action_edit.addEventListener("click", ()=> {
     });
     inp_price.value = current_product.product_price;
     inp_amount.value = current_product.amount;
+    inp_price.focus();
 })
 
 action_delete.addEventListener('click', ()=> {
@@ -330,6 +331,7 @@ function set_product_at_the_start() {
 btn_show_list.addEventListener('click', () => {
     products_modal.classList.add('active');
     activate_xbuttons();
+    inp_prod.focus();
 });
 
 function activate_xbuttons() {
