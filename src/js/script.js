@@ -155,6 +155,7 @@ action_edit.addEventListener("click", ()=> {
     });
     inp_price.value = current_product.product_price;
     inp_amount.value = current_product.amount;
+    window.scrollTo(0,0);
     inp_price.focus();
 })
 
@@ -331,6 +332,7 @@ function set_product_at_the_start() {
 btn_show_list.addEventListener('click', () => {
     products_modal.classList.add('active');
     activate_xbuttons();
+    window.scrollTo(0,0);
     inp_prod.focus();
 });
 
