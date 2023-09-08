@@ -1,12 +1,12 @@
 .list-wrapper {
-    margin: 30px auto;
+    margin: 20px auto 10px auto;
     border: 1px solid white;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     overflow-y: scroll;
-    max-height: 70vh;
+    max-height: 60vh;
     padding: 10px;
     z-index: 1;
 
@@ -62,11 +62,27 @@
             background-color: tomato;
         }
     }
+
+}
+
+.button-del {
+    position: fixed;
+    bottom: 20px;
+    left: 5px;
+    width: fit-content;
+    height: 20px;
+    border-radius: 8px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(139, 21, 21);
+    font-size: 3vw;
 }
 
 .shopping-sum {
     color: red;
-    font-size: 2em;
+    font-size: 7vw;
 }
 
 .list-button {

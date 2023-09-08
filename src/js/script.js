@@ -30,7 +30,7 @@ const edit_modal = document.getElementById('edit_modal');
 const inp_price = document.getElementById('inp_price');
 const inp_amount = document.getElementById('inp_amount');
 const btn_submit_edit = document.getElementById('btn_submit_edit');
-
+const btn_delete_shoppinglist = document.getElementById("btn_delete_shoppinglist")
 
 
 const xbuttons = document.querySelectorAll('.xbutton');
@@ -458,3 +458,30 @@ function uniqueID_Generator() {
     }
     return key;
 }
+
+
+//########################################
+// Delete shopping list 
+//########################################
+
+btn_delete_shoppinglist.addEventListener("click", ()=> {
+
+    const decision = window.confirm("Sollen die Produkte auf der Einkaufsliste entfernt werden?")
+    
+    if(decision) {
+        for(let i = 0; i < shoppinglist.length; i++) {
+            shoppinglist[i].is_on_list = false;
+            shoppinglist[i].is_open = false;
+        }
+        for(let i = 0; i < products.length; i++) {
+            products[i].is_on_list = false;
+            products[i].is_open = false;
+        }
+        shoppinglist = [];
+        render_Product_list();
+        render_shopping_list();
+        save_obj.saved_products = products;
+        save_obj.saved_shoppinglist = shoppinglist;
+        save_into_storage();
+    }
+})
