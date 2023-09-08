@@ -158,6 +158,11 @@ action_edit.addEventListener("click", ()=> {
 })
 
 action_delete.addEventListener('click', ()=> {
+    delete_from_shoppinglist();
+    close_all_modals();
+})
+
+function delete_from_shoppinglist() {
     if (current_product.is_on_list) {
         // uncheck on productlist
         for(let i = 0; i < products.length; i++) {
@@ -180,8 +185,7 @@ action_delete.addEventListener('click', ()=> {
     save_into_storage();
     render_shopping_list();
     render_Product_list();
-    close_all_modals();
-})
+}
 
 
 
@@ -200,7 +204,7 @@ function render_Product_list() {
         prod_container.classList.add('product');
         render_color(product, prod_container, 'prod');
 
-        // On Click, push item to shopping list
+        //? On Click, push item to shopping list
         prod_container.onclick = () => {
             // If product is already on list
             if (!shoppinglist.includes(product)) {
@@ -209,6 +213,10 @@ function render_Product_list() {
                 product.is_open = true;
                 save_obj.saved_shoppinglist = shoppinglist;
                 save_into_storage();
+            }else {
+                //? Delete from shoppinglist
+                current_product = product;
+                delete_from_shoppinglist()
             }
 
             render_shopping_list();
