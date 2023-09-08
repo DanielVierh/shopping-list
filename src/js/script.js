@@ -119,7 +119,7 @@ function render_shopping_list() {
         prod_container.onclick = () => {
             //Öffne neues Modal und übergebe prod
             action_modal.classList.add('active-mini');
-            activate_xbuttons();
+            activate_xbuttons('action_x');
             current_product = product;
             prod_modal_label.innerText = product.product_name;
         };
@@ -149,7 +149,7 @@ action_check.addEventListener("click", ()=> {
 //? Open Edit Modal
 action_edit.addEventListener("click", ()=> {
     edit_modal.classList.add('active')
-    activate_xbuttons();
+    activate_xbuttons('edit_x');
     productLabels.forEach((prod_label) => {
         prod_label.innerText = current_product.product_name;
     });
@@ -319,12 +319,14 @@ function set_product_at_the_start() {
 //########################################
 btn_show_list.addEventListener('click', () => {
     products_modal.classList.add('active');
-    activate_xbuttons();
+    activate_xbuttons('prod_x');
 });
 
-function activate_xbuttons() {
+function activate_xbuttons(id) {
     xbuttons.forEach((xbutton) => {
-        xbutton.classList.add('active');
+        if(xbutton.id === id) {
+            xbutton.classList.add('active');
+        }
     });
 }
 
@@ -390,7 +392,7 @@ function add_new_product() {
             save_into_storage();
             render_Product_list();
             render_shopping_list();
-
+                // Edit Modal
             edit_modal.classList.add('active')
             activate_xbuttons('edit_x');
             current_product = prod;
