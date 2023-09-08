@@ -155,8 +155,6 @@ action_edit.addEventListener("click", ()=> {
     });
     inp_price.value = current_product.product_price;
     inp_amount.value = current_product.amount;
-    // window.scrollTo(0,0);
-    // inp_price.focus();
 })
 
 action_delete.addEventListener('click', ()=> {
@@ -392,6 +390,15 @@ function add_new_product() {
             save_into_storage();
             render_Product_list();
             render_shopping_list();
+
+            edit_modal.classList.add('active')
+            activate_xbuttons('edit_x');
+            current_product = prod;
+            productLabels.forEach((prod_label) => {
+                prod_label.innerText = current_product.product_name;
+            });
+            inp_price.value = current_product.product_price;
+            inp_amount.value = current_product.amount;
 
         } else {
             //TODO - Hier könnte man die Logik implementieren, dass das Produkt auf die Shoppinglist gesetzt wird
