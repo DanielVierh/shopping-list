@@ -215,7 +215,7 @@ function render_Product_list() {
             render_Product_list();
         };
 
-        prod_container.appendChild(amount_label);
+        //prod_container.appendChild(amount_label);
         all_products.appendChild(prod_container);
     });
 }
