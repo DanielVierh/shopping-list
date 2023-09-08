@@ -205,17 +205,7 @@ function render_Product_list() {
         // On Click, push item to shopping list
         prod_container.onclick = () => {
             // If product is already on list
-            if (shoppinglist.includes(product)) {
-                // const decision = window.confirm(
-                //     `Soll das Produkt ${product.product_name} nochmals auf die Einkaufsliste gesetzt werden? Damit ändert sich auch der Preis`,
-                // );
-                // if (decision) {
-                //     product.amount++;
-                // }
-                //? Trigger for Edit Menu
-
-                // Else add to list
-            } else {
+            if (!shoppinglist.includes(product)) {
                 shoppinglist.push(product);
                 product.is_on_list = true;
                 product.is_open = true;
@@ -332,8 +322,6 @@ function set_product_at_the_start() {
 btn_show_list.addEventListener('click', () => {
     products_modal.classList.add('active');
     activate_xbuttons();
-    // window.scrollTo(0,0);
-    // inp_prod.focus();
 });
 
 function activate_xbuttons() {
@@ -395,13 +383,16 @@ function add_new_product() {
                 new_product_name,
                 0.0,
             );
-            prod.is_on_list = false;
-            prod.is_open = false;
+            prod.is_on_list = true;
+            prod.is_open = true;
             products.unshift(prod);
+            shoppinglist.unshift(prod)
             save_obj.saved_products = products;
             inp_prod.value = '';
             save_into_storage();
             render_Product_list();
+            render_shopping_list();
+
         } else {
             //TODO - Hier könnte man die Logik implementieren, dass das Produkt auf die Shoppinglist gesetzt wird
         }
