@@ -70,7 +70,7 @@ body {
   height: 20px;
   width: fit-content;
   border-radius: 10px;
-  font-size: 16px;
+  font-size: 12px;
   padding: 5px;
   box-shadow: inset 0 0 3px white;
   display: flex;
@@ -82,7 +82,6 @@ body {
 .list-wrapper .product .amount-label.bigger-label {
   width: fit-content;
   border-radius: 8px;
-  font-size: 12px;
 }
 .list-wrapper .product .tile-edit-button {
   position: absolute;
