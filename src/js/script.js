@@ -590,7 +590,9 @@ inp_prod.oninput = ()=> {
     let products_filtered = [];
 
     for(let i = 0; i < products.length; i++) {
-        if(products[i].product_name.includes(current_inp)) {
+        const product_name_uppercase = products[i].product_name.toUpperCase()
+        const inp_uppercase = current_inp.toUpperCase()
+        if(product_name_uppercase.includes(inp_uppercase)) {
             products_filtered.push(products[i])
         }
     }
