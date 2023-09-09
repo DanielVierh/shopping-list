@@ -1,5 +1,5 @@
 //########################################
-// Variables
+//? Variables
 //########################################
 let shoppinglist = [];
 let products = [];
@@ -12,7 +12,7 @@ let save_obj = {
 let current_product;
 
 //########################################
-// Elements
+//? Elements
 //########################################
 const shopping_list = document.getElementById('shopping_list');
 const all_products = document.getElementById('all_products');
@@ -41,7 +41,7 @@ const productLabels = document.querySelectorAll('.productLabel');
 
 
 //########################################
-// Class
+//? Class
 //########################################
 class Product {
     constructor(product_id, product_name, product_price) {
@@ -54,9 +54,11 @@ class Product {
     }
 }
 
+
 //########################################
-// Window Onload Load Local Storage
+//? Init
 //########################################
+
 window.onload = init();
 
 function init() {
@@ -64,6 +66,9 @@ function init() {
     update_lists()
 }
 
+//########################################
+//? Window Onload Load Local Storage
+//########################################
 function load_local_storage() {
     if (localStorage.getItem('stored_shopping_saveobj') != '') {
         try {
@@ -84,12 +89,15 @@ function load_local_storage() {
     }
 }
 
+//########################################
+//? Save to local Storage
+//########################################
 function save_into_storage() {
     localStorage.setItem('stored_shopping_saveobj', JSON.stringify(save_obj));
 }
 
 //########################################
-// Render Shopping list
+//? Render Shopping list
 //########################################
 function render_shopping_list() {
     shopping_list.innerHTML = '';
@@ -130,7 +138,9 @@ function render_shopping_list() {
     shopping_sum_label.innerHTML = `${calculated_shopping_sum.toFixed(2)} €`;
 }
 
-//! Toggle check for product
+//########################################
+// //? Toggle check for product
+//########################################
 action_check.addEventListener("click", ()=> {
     if (current_product.is_open) {
         current_product.is_open = false;
@@ -145,7 +155,10 @@ action_check.addEventListener("click", ()=> {
     close_all_modals();
 })
 
-//? Open Edit Modal
+//########################################
+// //? Open Edit Modal
+//########################################
+
 action_edit.addEventListener("click", ()=> {
     edit_modal.classList.add('active')
     activate_xbuttons('edit_x');
@@ -156,11 +169,17 @@ action_edit.addEventListener("click", ()=> {
     inp_amount.value = current_product.amount;
 })
 
+//########################################
+//? Event Listener for remove button
+//########################################
 action_delete.addEventListener('click', ()=> {
     delete_from_shoppinglist();
     close_all_modals();
 })
 
+//########################################
+//? Remove one product from shopping list
+//########################################
 function delete_from_shoppinglist() {
     if (current_product.is_on_list) {
         // uncheck on productlist
@@ -188,7 +207,7 @@ function delete_from_shoppinglist() {
 
 
 //########################################
-// Render Product list
+//? Render Product list
 //########################################
 function render_Product_list(arr) {
     all_products.innerHTML = '';
@@ -226,7 +245,7 @@ function render_Product_list(arr) {
 }
 
 //########################################
-// Save Edit changes
+//? Save Edit changes
 //########################################
 btn_submit_edit.addEventListener("click", ()=> {
     if(inp_amount.value !== '') {
@@ -277,7 +296,7 @@ btn_submit_edit.addEventListener("click", ()=> {
 
 
 //########################################
-// Colorize Tile if is open
+//? Colorize Tile if is open
 //########################################
 function render_color(product, tile, list) {
     if (list === 'prod') {
@@ -295,6 +314,9 @@ function render_color(product, tile, list) {
     }
 }
 
+//########################################
+//? Set Product at the last pos
+//########################################
 function set_product_at_the_end() {
     const product = current_product;
     const arrIndex = shoppinglist.indexOf(product);
@@ -307,6 +329,9 @@ function set_product_at_the_end() {
     }
 }
 
+//########################################
+//? Set Product at the first pos
+//########################################
 function set_product_at_the_start() {
     const product = current_product;
     const arrIndex = shoppinglist.indexOf(product);
@@ -319,13 +344,16 @@ function set_product_at_the_start() {
 }
 
 //########################################
-// Modal
+//? Modal
 //########################################
 btn_show_list.addEventListener('click', () => {
     products_modal.classList.add('active');
     activate_xbuttons('prod_x');
 });
 
+//########################################
+// ? Activate X Buttons
+//########################################
 function activate_xbuttons(id) {
     xbuttons.forEach((xbutton) => {
         if(xbutton.id === id) {
@@ -334,6 +362,9 @@ function activate_xbuttons(id) {
     });
 }
 
+//########################################
+// ? Hide x buttons
+//########################################
 function hide_xbuttons() {
     xbuttons.forEach((xbutton) => {
         xbutton.classList.remove('active');
@@ -341,7 +372,7 @@ function hide_xbuttons() {
 }
 
 //########################################
-//close Modals
+//? close Modals
 //########################################
 xbuttons.forEach((xbutton) => {
     xbutton.addEventListener('click', () => {
@@ -349,6 +380,9 @@ xbuttons.forEach((xbutton) => {
     });
 });
 
+//########################################
+// ? Close all Modals
+//########################################
 function close_all_modals() {
     modals.forEach((modal) => {
         modal.classList.remove('active');
@@ -358,13 +392,16 @@ function close_all_modals() {
 }
 
 //########################################
-// Add new Product
+//? Add new Product
 //########################################
 
 btn_submit.addEventListener('click', () => {
     add_new_product();
 });
 
+//########################################
+// ? Add Product if enter key is pressed
+//########################################
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
         add_new_product();
@@ -411,6 +448,9 @@ function add_new_product() {
     }
 }
 
+//########################################
+// ? Function to give random id
+//########################################
 function uniqueID_Generator() {
     const rndStuff = [
         'A',
@@ -462,7 +502,7 @@ function uniqueID_Generator() {
 
 
 //########################################
-// Delete shopping list
+// ? Delete shopping list
 //########################################
 
 btn_delete_shoppinglist.addEventListener("click", ()=> {
@@ -486,6 +526,10 @@ btn_delete_shoppinglist.addEventListener("click", ()=> {
     }
 })
 
+
+//########################################
+// ? Delete Product forever
+//########################################
 btn_delete_product.addEventListener("click", ()=> {
 
     const decision = window.confirm(`Soll das Produkt "${current_product.product_name}" für immer gelöscht werden?`)
@@ -511,6 +555,9 @@ btn_delete_product.addEventListener("click", ()=> {
 })
 
 
+//########################################
+//? Updage List and clean up
+//########################################
 function update_lists(){
     render_shopping_list();
     render_Product_list(products);
@@ -520,7 +567,9 @@ function update_lists(){
 
 
 
-
+//########################################
+//? Filter Function for typing in product modal input field
+//########################################
 
 inp_prod.oninput = ()=> {
     const current_inp = inp_prod.value;
