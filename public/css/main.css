@@ -84,6 +84,20 @@ body {
   border-radius: 8px;
   font-size: 12px;
 }
+.list-wrapper .product .tile-edit-button {
+  position: absolute;
+  top: 15px;
+  padding: 10px;
+  width: fit-content;
+  height: 15px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  box-shadow: inset 0 0 5px white;
+}
 .list-wrapper .product.on-list {
   background-color: tomato;
 }

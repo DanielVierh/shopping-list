@@ -160,6 +160,10 @@ action_check.addEventListener("click", ()=> {
 //########################################
 
 action_edit.addEventListener("click", ()=> {
+    open_edit_modal()
+})
+
+function open_edit_modal() {
     edit_modal.classList.add('active')
     activate_xbuttons('edit_x');
     productLabels.forEach((prod_label) => {
@@ -167,7 +171,7 @@ action_edit.addEventListener("click", ()=> {
     });
     inp_price.value = current_product.product_price;
     inp_amount.value = current_product.amount;
-})
+}
 
 //########################################
 //? Event Listener for remove button
@@ -215,11 +219,14 @@ function render_Product_list(arr) {
     arr.forEach((product) => {
         let prod_container = document.createElement('div');
         let amount_label = document.createElement('p');
+        let edit_button = document.createElement('div');
         amount_label.innerHTML = product.amount;
         amount_label.classList.add('amount-label');
         prod_container.innerHTML = product.product_name;
         prod_container.classList.add('product');
         render_color(product, prod_container, 'prod');
+        edit_button.classList.add('tile-edit-button');
+        edit_button.innerHTML = 'bearbeiten';
 
         //? On Click, push item to shopping list
         prod_container.onclick = () => {
@@ -239,7 +246,14 @@ function render_Product_list(arr) {
             update_lists();
         };
 
+        edit_button.addEventListener('click', ()=> {
+            current_product = product;
+            open_edit_modal()
+        })
+
         //prod_container.appendChild(amount_label);
+        prod_container.appendChild(edit_button);
+
         all_products.appendChild(prod_container);
     });
 }
