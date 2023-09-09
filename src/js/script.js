@@ -62,8 +62,6 @@ window.onload = init();
 function init() {
     load_local_storage();
     update_lists()
-    console.log('Producta', products);
-    console.log('shoppinglist', shoppinglist);
 }
 
 function load_local_storage() {
@@ -412,22 +410,6 @@ function add_new_product() {
         }
     }
 }
-
-
-// inp_prod.addEventListener("change", ()=> {
-//     const current_input = inp_prod.value;
-
-//     for(let i = 0; i < products.length; i++) {
-//         if(products[i].product_name.includes(current_input)) {
-//             console.log(products[i].product_name);
-//         }
-//     }
-
-// })
-
-
-
-
 
 function uniqueID_Generator() {
     const rndStuff = [
