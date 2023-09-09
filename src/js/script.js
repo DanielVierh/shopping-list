@@ -34,9 +34,11 @@ const btn_delete_shoppinglist = document.getElementById("btn_delete_shoppinglist
 const btn_delete_product = document.getElementById("btn_delete_product")
 
 
+
 const xbuttons = document.querySelectorAll('.xbutton');
 const modals = document.querySelectorAll('.modal');
 const productLabels = document.querySelectorAll('.productLabel');
+
 
 //########################################
 // Class
@@ -190,10 +192,10 @@ function delete_from_shoppinglist() {
 //########################################
 // Render Product list
 //########################################
-function render_Product_list() {
+function render_Product_list(arr) {
     all_products.innerHTML = '';
     // Loop product list
-    products.forEach((product) => {
+    arr.forEach((product) => {
         let prod_container = document.createElement('div');
         let amount_label = document.createElement('p');
         amount_label.innerHTML = product.amount;
@@ -412,6 +414,20 @@ function add_new_product() {
 }
 
 
+// inp_prod.addEventListener("change", ()=> {
+//     const current_input = inp_prod.value;
+
+//     for(let i = 0; i < products.length; i++) {
+//         if(products[i].product_name.includes(current_input)) {
+//             console.log(products[i].product_name);
+//         }
+//     }
+
+// })
+
+
+
+
 
 function uniqueID_Generator() {
     const rndStuff = [
@@ -515,5 +531,23 @@ btn_delete_product.addEventListener("click", ()=> {
 
 function update_lists(){
     render_shopping_list();
-    render_Product_list();
+    render_Product_list(products);
+    inp_prod.value = '';
+}
+
+
+
+
+
+
+inp_prod.oninput = ()=> {
+    const current_inp = inp_prod.value;
+    let products_filtered = [];
+
+    for(let i = 0; i < products.length; i++) {
+        if(products[i].product_name.includes(current_inp)) {
+            products_filtered.push(products[i])
+        }
+    }
+    render_Product_list(products_filtered)
 }
