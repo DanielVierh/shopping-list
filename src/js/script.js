@@ -220,7 +220,7 @@ function render_Product_list(arr) {
         let prod_container = document.createElement('div');
         let amount_label = document.createElement('p');
         let edit_button = document.createElement('div');
-        amount_label.innerHTML = product.product_price;
+        amount_label.innerHTML = `${product.product_price}€`;
         amount_label.classList.add('amount-label');
         prod_container.innerHTML = product.product_name;
         prod_container.classList.add('product');
