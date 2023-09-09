@@ -4,6 +4,11 @@
 h1 {
   font-size: 6vw;
 }
+@media (min-width: 1600px) {
+  h1 {
+    font-size: 4em;
+  }
+}
 
 .grid {
   display: grid;
@@ -91,7 +96,7 @@ body {
   bottom: 20px;
   left: 5px;
   width: fit-content;
-  height: 20px;
+  min-height: 20px;
   border-radius: 8px;
   padding: 5px;
   display: flex;
@@ -100,10 +105,20 @@ body {
   background-color: rgb(139, 21, 21);
   font-size: 3vw;
 }
+@media (min-width: 1600px) {
+  .button-del {
+    font-size: 2em;
+  }
+}
 
 .shopping-sum {
   color: red;
   font-size: 7vw;
+}
+@media (min-width: 1600px) {
+  .shopping-sum {
+    font-size: 4em;
+  }
 }
 
 .list-button {
