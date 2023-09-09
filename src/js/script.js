@@ -59,8 +59,7 @@ window.onload = init();
 
 function init() {
     load_local_storage();
-    render_shopping_list();
-    render_Product_list();
+    update_lists()
     console.log('Producta', products);
     console.log('shoppinglist', shoppinglist);
 }
@@ -142,8 +141,7 @@ action_check.addEventListener("click", ()=> {
     }
     save_obj.saved_shoppinglist = shoppinglist;
     save_into_storage();
-    render_shopping_list();
-    render_Product_list();
+    update_lists()
     close_all_modals();
 })
 
@@ -184,8 +182,7 @@ function delete_from_shoppinglist() {
     save_obj.saved_shoppinglist = shoppinglist;
     save_obj.saved_products = products;
     save_into_storage();
-    render_shopping_list();
-    render_Product_list();
+    update_lists()
 }
 
 
@@ -220,8 +217,7 @@ function render_Product_list() {
                 delete_from_shoppinglist()
             }
 
-            render_shopping_list();
-            render_Product_list();
+            update_lists();
         };
 
         //prod_container.appendChild(amount_label);
@@ -274,8 +270,7 @@ btn_submit_edit.addEventListener("click", ()=> {
     save_obj.saved_products = products;
     save_obj.saved_shoppinglist = shoppinglist;
     save_into_storage();
-    render_Product_list();
-    render_shopping_list();
+    update_lists()
     close_all_modals();
 
 })
@@ -399,8 +394,7 @@ function add_new_product() {
             save_obj.saved_products = products;
             inp_prod.value = '';
             save_into_storage();
-            render_Product_list();
-            render_shopping_list();
+            update_lists()
                 // Edit Modal
             edit_modal.classList.add('active')
             activate_xbuttons('edit_x');
@@ -470,13 +464,13 @@ function uniqueID_Generator() {
 
 
 //########################################
-// Delete shopping list 
+// Delete shopping list
 //########################################
 
 btn_delete_shoppinglist.addEventListener("click", ()=> {
 
     const decision = window.confirm("Sollen alle Produkte auf der Einkaufsliste entfernt werden?")
-    
+
     if(decision) {
         for(let i = 0; i < shoppinglist.length; i++) {
             shoppinglist[i].is_on_list = false;
@@ -487,8 +481,7 @@ btn_delete_shoppinglist.addEventListener("click", ()=> {
             products[i].is_open = false;
         }
         shoppinglist = [];
-        render_Product_list();
-        render_shopping_list();
+        update_lists();
         save_obj.saved_products = products;
         save_obj.saved_shoppinglist = shoppinglist;
         save_into_storage();
@@ -498,7 +491,7 @@ btn_delete_shoppinglist.addEventListener("click", ()=> {
 btn_delete_product.addEventListener("click", ()=> {
 
     const decision = window.confirm(`Soll das Produkt "${current_product.product_name}" für immer gelöscht werden?`)
-    
+
     if(decision) {
         for(let i = 0; i < shoppinglist.length; i++) {
             if(current_product.product_name === shoppinglist[i].product_name) {
@@ -511,11 +504,16 @@ btn_delete_product.addEventListener("click", ()=> {
             }
         }
 
-        render_Product_list();
-        render_shopping_list();
+        update_lists()
         save_obj.saved_products = products;
         save_obj.saved_shoppinglist = shoppinglist;
         save_into_storage();
         close_all_modals();
     }
 })
+
+
+function update_lists(){
+    render_shopping_list();
+    render_Product_list();
+}
