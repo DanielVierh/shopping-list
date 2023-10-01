@@ -688,10 +688,16 @@ btn_delete_product.addEventListener("click", ()=> {
                 products.splice(i, 1);
             }
         }
+        for(let i = 0; i < weeklylist.length; i++) {
+            if(current_product.product_name === weeklylist[i].product_name) {
+                weeklylist.splice(i, 1);
+            }
+        }
 
         update_lists()
         save_obj.saved_products = products;
         save_obj.saved_shoppinglist = shoppinglist;
+        save_obj.saved_weekly_list = weeklylist;
         save_into_storage();
         close_all_modals();
     }
