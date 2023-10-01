@@ -3,10 +3,12 @@
 //########################################
 let shoppinglist = [];
 let products = [];
+let weeklylist = [];
 
 let save_obj = {
     saved_shoppinglist: [],
     saved_products: [],
+    saved_weekly_list: [],
 };
 
 let current_product;
@@ -63,6 +65,7 @@ class Product {
 
 window.onload = init();
 
+
 function init() {
     load_local_storage();
     update_lists()
@@ -79,14 +82,24 @@ function load_local_storage() {
             );
             products = save_obj.saved_products;
             shoppinglist = save_obj.saved_shoppinglist;
+            try {
+                weeklylist = save_obj.saved_weekly_list;
+                if(weeklylist === undefined) {
+                    weeklylist = [];
+                }
+            } catch (error) {
+                console.log(error);
+            }
         } catch (error) {
             console.log(error);
             save_obj = {
                 saved_shoppinglist: [],
                 saved_products: [],
+                saved_weekly_list: [],
             };
             save_obj.saved_products = products;
             save_obj.saved_shoppinglist = shoppinglist;
+            save_obj.saved_weekly_list = weeklylist;
         }
     }
 }
@@ -301,6 +314,12 @@ btn_submit_edit.addEventListener("click", ()=> {
                 shoppinglist[i].amount = new_amount;
             }
         }
+
+        for(let i = 0; i < weeklylist.length; i++) {
+            if(current_product.product_name === weeklylist[i].product_name) {
+                weeklylist[i].amount = new_amount;
+            }
+        }
     }
 
     if(inp_price.value !== '') {
@@ -320,10 +339,17 @@ btn_submit_edit.addEventListener("click", ()=> {
                 shoppinglist[i].product_price = new_price;
             }
         }
+
+        for(let i = 0; i < weeklylist.length; i++) {
+            if(current_product.product_name === weeklylist[i].product_name) {
+                weeklylist[i].product_price = new_price;
+            }
+        }
     }
 
     save_obj.saved_products = products;
     save_obj.saved_shoppinglist = shoppinglist;
+
     save_into_storage();
     update_lists()
     close_all_modals();
@@ -335,13 +361,42 @@ btn_submit_edit.addEventListener("click", ()=> {
         const on_weekly_list_status = check_if_product_is_on_weeklyShoppingList();
         if(on_weekly_list_status === false) {
             current_product.on_weekly_list = true;
+
+            for(let i = 0; i < products.length; i++) {
+                if(current_product.product_name === products[i].product_name) {
+                    products[i].on_weekly_list = true;
+                }
+            }
+
+            for(let i = 0; i < shoppinglist.length; i++) {
+                if(current_product.product_name === shoppinglist[i].product_name) {
+                    products[i].on_weekly_list = true;
+                }
+            }
+
             // Zur eigenrlichen Liste hinzufügen
+            weeklylist.push(current_product);
         }else{
             current_product.on_weekly_list = false;
+
+            for(let i = 0; i < products.length; i++) {
+                if(current_product.product_name === products[i].product_name) {
+                    products[i].on_weekly_list = false;
+                }
+            }
+
+            for(let i = 0; i < shoppinglist.length; i++) {
+                if(current_product.product_name === shoppinglist[i].product_name) {
+                    products[i].on_weekly_list = false;
+                }
+            }
+
             // aus Liste entfernen
         }
 
         // Speichern
+       save_obj.saved_weekly_list = weeklylist;
+       save_into_storage();
     })
 
     function check_if_product_is_on_weeklyShoppingList() {
