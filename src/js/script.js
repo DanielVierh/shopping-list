@@ -29,6 +29,7 @@ const btn_submit = document.getElementById('btn_submit');
 const edit_modal = document.getElementById('edit_modal');
 const inp_price = document.getElementById('inp_price');
 const inp_amount = document.getElementById('inp_amount');
+const to_weeklyList_ToggleButton = document.getElementById("to_weeklyList_ToggleButton");
 const btn_submit_edit = document.getElementById('btn_submit_edit');
 const btn_delete_shoppinglist = document.getElementById("btn_delete_shoppinglist")
 const btn_delete_product = document.getElementById("btn_delete_product")
@@ -51,6 +52,7 @@ class Product {
         this.is_on_list = false;
         this.is_open = false;
         this.amount = 1;
+        this.on_weekly_list = false;
     }
 }
 
@@ -177,6 +179,20 @@ function open_edit_modal() {
     });
     inp_price.value = current_product.product_price;
     inp_amount.value = current_product.amount;
+
+    // Set the toggle button if on list or not
+    const on_weekly_list_status = check_if_product_is_on_weeklyShoppingList();
+    if(on_weekly_list_status === false) {
+        to_weeklyList_ToggleButton.checked = true;
+        setTimeout(() => {
+            to_weeklyList_ToggleButton.checked = false;
+        }, 250);
+    }else {
+        to_weeklyList_ToggleButton.checked = false;
+        setTimeout(() => {
+            to_weeklyList_ToggleButton.checked = true;
+        }, 250);
+    }
 }
 
 //########################################
@@ -313,6 +329,35 @@ btn_submit_edit.addEventListener("click", ()=> {
     close_all_modals();
 
 })
+
+    //! On Weekly shopping list
+    to_weeklyList_ToggleButton.addEventListener('click', ()=>{
+        const on_weekly_list_status = check_if_product_is_on_weeklyShoppingList();
+        if(on_weekly_list_status === false) {
+            current_product.on_weekly_list = true;
+            // Zur eigenrlichen Liste hinzufügen
+        }else{
+            current_product.on_weekly_list = false;
+            // aus Liste entfernen
+        }
+
+        // Speichern
+    })
+
+    function check_if_product_is_on_weeklyShoppingList() {
+        const product_is_on_weekly_list = current_product.on_weekly_list;
+        let on_weekly_list_status = undefined;
+
+        if(product_is_on_weekly_list === undefined) {
+            current_product.on_weekly_list = false;
+            on_weekly_list_status = false;
+        }else if(product_is_on_weekly_list === false) {
+            on_weekly_list_status = false;
+        }else {
+            on_weekly_list_status = true;
+        }
+        return on_weekly_list_status;
+    }
 
 
 //########################################
