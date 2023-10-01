@@ -727,3 +727,50 @@ inp_prod.oninput = ()=> {
     }
     render_Product_list(products_filtered)
 }
+
+
+
+btn_trigger_weekly_list.addEventListener('click', ()=> {
+    let products_from_weekly_list = '';
+    weeklylist.forEach((prod)=> {
+        products_from_weekly_list = products_from_weekly_list + `${prod.product_name} \n`
+    })
+    const decision = window.confirm(`Sollen die Produkte vom Wocheneinkauf auf den Einkaufzettel übertragen werden? \n ${products_from_weekly_list}`);
+
+    if(decision) {
+        let success_counter = 0;
+        for(let i = 0; i < weeklylist.length; i++) {
+            let product_is_already_on_shoppinglist = false;
+
+            for(let j = 0; j < shoppinglist.length; j++) {
+                if(weeklylist[i].product_name === shoppinglist[j].product_name) {
+                    product_is_already_on_shoppinglist = true;
+                }
+            }
+
+            if(product_is_already_on_shoppinglist === false) {
+                success_counter++;
+                const product = weeklylist[i];
+                product.is_on_list = true;
+                product.is_open = true;
+                shoppinglist.push(product);
+
+                for(let j = 0; j < products.length; j++) {
+                    if(weeklylist[i].product_name === products[j].product_name) {
+                        products[j].is_on_list = true;
+                        products[j].is_open = true;
+                    }
+                }
+            }
+        }
+
+        if(success_counter === 0) {
+            alert('Es konnten keine Produkte auf die Einkaufsliste gesetzt werden, da sie sich bereits auf ihr befinden')
+        }
+
+        save_obj.saved_shoppinglist = shoppinglist;
+        save_obj.saved_products = products;
+        save_into_storage();
+        update_lists();
+    }
+})
