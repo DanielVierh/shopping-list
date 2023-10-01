@@ -735,7 +735,7 @@ btn_trigger_weekly_list.addEventListener('click', ()=> {
         }
 
         if(success_counter === 0) {
-            alert('Es konnten keine Produkte auf die Einkaufsliste gesetzt werden, da sie sich bereits auf ihr befinden')
+            alert('Es konnten keine Produkte auf die Einkaufsliste gesetzt werden, da sie sich bereits auf dieser befinden')
         }
 
         save_obj.saved_shoppinglist = shoppinglist;
