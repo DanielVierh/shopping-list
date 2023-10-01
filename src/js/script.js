@@ -356,7 +356,9 @@ btn_submit_edit.addEventListener("click", ()=> {
 
 })
 
-    //! On Weekly shopping list
+    //########################################
+    //?  set On / Off Weekly shopping list
+    //########################################
     to_weeklyList_ToggleButton.addEventListener('click', ()=>{
         const on_weekly_list_status = check_if_product_is_on_weeklyShoppingList();
         if(on_weekly_list_status === false) {
@@ -392,12 +394,23 @@ btn_submit_edit.addEventListener("click", ()=> {
             }
 
             // aus Liste entfernen
-        }
+            for(let i = 0; i < weeklylist.length; i++){
+                if(current_product.product_name === weeklylist[i].product_name) {
+                   weeklylist.splice(i, 1);
+                }
+            }
+         }
 
         // Speichern
-       save_obj.saved_weekly_list = weeklylist;
-       save_into_storage();
+        save_obj.saved_products = products;
+        save_obj.saved_shoppinglist = shoppinglist;
+        save_obj.saved_weekly_list = weeklylist;
+        save_into_storage();
     })
+
+    //########################################
+    //? check if prod is on weekly list
+    //########################################
 
     function check_if_product_is_on_weeklyShoppingList() {
         const product_is_on_weekly_list = current_product.on_weekly_list;
@@ -411,7 +424,10 @@ btn_submit_edit.addEventListener("click", ()=> {
         }else {
             on_weekly_list_status = true;
         }
+
+        console.log('weeklylist', weeklylist);
         return on_weekly_list_status;
+
     }
 
 
