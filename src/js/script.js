@@ -33,8 +33,9 @@ const inp_price = document.getElementById('inp_price');
 const inp_amount = document.getElementById('inp_amount');
 const to_weeklyList_ToggleButton = document.getElementById("to_weeklyList_ToggleButton");
 const btn_submit_edit = document.getElementById('btn_submit_edit');
-const btn_delete_shoppinglist = document.getElementById("btn_delete_shoppinglist")
-const btn_delete_product = document.getElementById("btn_delete_product")
+const btn_delete_shoppinglist = document.getElementById("btn_delete_shoppinglist");
+const btn_delete_product = document.getElementById("btn_delete_product");
+const btn_trigger_weekly_list = document.getElementById("btn_trigger_weekly_list");
 
 
 
@@ -68,7 +69,7 @@ window.onload = init();
 
 function init() {
     load_local_storage();
-    update_lists()
+    update_lists();
 }
 
 //########################################
@@ -425,7 +426,6 @@ btn_submit_edit.addEventListener("click", ()=> {
             on_weekly_list_status = true;
         }
 
-        console.log('weeklylist', weeklylist);
         return on_weekly_list_status;
 
     }
@@ -485,6 +485,13 @@ function set_product_at_the_start() {
 btn_show_list.addEventListener('click', () => {
     products_modal.classList.add('active');
     activate_xbuttons('prod_x');
+
+    if(weeklylist.length > 0){
+        btn_trigger_weekly_list.classList.add("active");
+        btn_trigger_weekly_list.innerHTML = `Wocheneinkauf (${weeklylist.length})`;
+    }else {
+        btn_trigger_weekly_list.classList.remove("active");
+    }
 });
 
 //########################################

@@ -33,6 +33,22 @@ body {
   text-align: center;
 }
 
+.weekly-button {
+  background-color: black;
+  width: fit-content;
+  padding: 5px 10px;
+  margin: 5px;
+  border-radius: 8px;
+  font-size: 12px;
+  letter-spacing: 2.5px;
+  box-shadow: inset 0 0 20px white;
+  border: 1px solid white;
+  display: none;
+}
+.weekly-button.active {
+  display: block;
+}
+
 .list-wrapper {
   margin: 20px auto 10px auto;
   border: 1px solid white;
