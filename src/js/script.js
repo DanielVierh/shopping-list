@@ -258,7 +258,11 @@ function render_Product_list(arr) {
         let edit_button = document.createElement('div');
         amount_label.innerHTML = `${product.product_price} €`;
         amount_label.classList.add('amount-label');
-        prod_container.innerHTML = product.product_name;
+        if(product.on_weekly_list=== true) {
+            prod_container.innerHTML = '♺ </br> ' + product.product_name;
+        }else {
+            prod_container.innerHTML = product.product_name;
+        }
         prod_container.classList.add('product');
         render_color(product, prod_container, 'prod');
         edit_button.classList.add('tile-edit-button');
