@@ -123,6 +123,9 @@ function render_shopping_list() {
         empty_Label.innerHTML = 'Dein Einkaufszettel ist leer 🛒';
         empty_Label.classList.add('empty-label'); // Not in use yet
         shopping_list.appendChild(empty_Label);
+        btn_delete_shoppinglist.style.display = 'none';
+    }else {
+        btn_delete_shoppinglist.style.display = 'block';
     }
     // Loop shopping list
     shoppinglist.forEach((product) => {
