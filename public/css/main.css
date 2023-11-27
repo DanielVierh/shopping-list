@@ -197,7 +197,7 @@ body {
   height: 70vh;
   width: 80vw;
   z-index: 101;
-  background-color: rgba(50, 149, 182, 0.221);
+  background-color: rgba(26, 76, 92, 0.4);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 15px;
@@ -206,7 +206,6 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  box-shadow: 0 0 65px rgba(255, 255, 255, 0.558);
   border: 1px solid rgba(255, 255, 255, 0.348);
 }
 .modal.modal-small #prod_modal_label {
@@ -225,6 +224,7 @@ body {
   align-items: center;
   letter-spacing: 2.2px;
   box-shadow: 0 0 3px rgba(255, 255, 255, 0.558);
+  cursor: pointer;
 }
 .modal#edit_modal {
   z-index: 102;
@@ -299,6 +299,7 @@ body {
   border-radius: 50%;
   z-index: 103;
   box-shadow: inset 0 0 10px white, 0 0 10px white;
+  cursor: pointer;
 }
 .modal .input-wrapper {
   margin-top: 30px;
