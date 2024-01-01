@@ -28,6 +28,7 @@
         line-break: strict;
         position: relative;
         transition: all .4s ease;
+        cursor: pointer;
 
 
         .amount-label{
@@ -94,6 +95,7 @@
     align-items: center;
     background-color: rgb(139, 21, 21);
     font-size: 3vw;
+    cursor: pointer;
 
     @media (min-width: 1600px) {
         font-size: 2em;
@@ -121,4 +123,5 @@
     box-shadow: 0 0 8px white, inset 0 0 3px white;
     border-radius: 15px;
     z-index: 10;
+    cursor: pointer;
 }

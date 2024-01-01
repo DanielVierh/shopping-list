@@ -20,6 +20,7 @@
     #btn_delete_product {
         background-color: red;
         color: white;
+        cursor: pointer;
     }
 
     &.modal-small {
@@ -155,6 +156,7 @@
                 label {
                     padding: 0 20px;
                     width: 60%;
+                    cursor: pointer;
                 }
             }
         }
@@ -165,6 +167,7 @@
             padding: 15px 30px;
             border-radius: 15px;
             letter-spacing: 1.7px;
+            cursor: pointer;
         }
 
     }
@@ -216,6 +219,7 @@
             border-radius: 15px;
             background-color: $color-black;
             color: white;
+            cursor: pointer;
         }
     }
 }

@@ -9,6 +9,7 @@
     box-shadow: inset 0 0 20px white;
     border: 1px solid white;
     display: none;
+    cursor: pointer;
 
     &.active {
         display: block;
