@@ -39,6 +39,7 @@ const btn_submit_edit = document.getElementById('btn_submit_edit');
 const btn_delete_shoppinglist = document.getElementById("btn_delete_shoppinglist");
 const btn_delete_product = document.getElementById("btn_delete_product");
 const btn_trigger_weekly_list = document.getElementById("btn_trigger_weekly_list");
+const lbl_products_info = document.getElementById("lbl_products_info");
 
 
 
@@ -85,6 +86,10 @@ function load_local_storage() {
                 localStorage.getItem('stored_shopping_saveobj'),
             );
             products = save_obj.saved_products;
+
+            try {
+                lbl_products_info.innerHTML = `${products.length} Produkte vorhanden`;
+            } catch (error) {}
             shoppinglist = save_obj.saved_shoppinglist;
             try {
                 weeklylist = save_obj.saved_weekly_list;
