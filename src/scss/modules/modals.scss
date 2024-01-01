@@ -129,6 +129,46 @@
         }
     }
 
+    &#weeklyShopping_modal {
+
+        .scrollview {
+            height: 70vh;
+            overflow-y: scroll;
+            margin-top: 15px;
+
+
+            .select-item {
+                padding: 15px 0;
+                border: 1px solid white;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                overflow: clip;
+    
+                input {
+                    width: 20px;
+                    height: 20px;
+                    margin-right: 30px;
+                    margin-left: 50px;
+                }
+                
+                label {
+                    padding: 0 20px;
+                    width: 60%;
+                }
+            }
+        }
+        .save-button {
+            background-color: $color-black;
+            width: fit-content;
+            margin: 0 auto;
+            padding: 15px 30px;
+            border-radius: 15px;
+            letter-spacing: 1.7px;
+        }
+
+    }
+
     .xbutton {
         display: none;
 

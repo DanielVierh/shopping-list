@@ -280,6 +280,37 @@ body {
 .modal#edit_modal .slider.ckround:before {
   border-radius: 50%;
 }
+.modal#weeklyShopping_modal .scrollview {
+  height: 70vh;
+  overflow-y: scroll;
+  margin-top: 15px;
+}
+.modal#weeklyShopping_modal .scrollview .select-item {
+  padding: 15px 0;
+  border: 1px solid white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: clip;
+}
+.modal#weeklyShopping_modal .scrollview .select-item input {
+  width: 20px;
+  height: 20px;
+  margin-right: 30px;
+  margin-left: 50px;
+}
+.modal#weeklyShopping_modal .scrollview .select-item label {
+  padding: 0 20px;
+  width: 60%;
+}
+.modal#weeklyShopping_modal .save-button {
+  background-color: rgb(33, 31, 31);
+  width: fit-content;
+  margin: 0 auto;
+  padding: 15px 30px;
+  border-radius: 15px;
+  letter-spacing: 1.7px;
+}
 .modal .xbutton {
   display: none;
 }

@@ -40,6 +40,7 @@
     </div>
 
 
+
     <!-- Edit Modal -->
     <div class="modal" id="edit_modal">
         <div class="xbutton" id="edit_x">X</div>
@@ -57,13 +58,27 @@
 
         <p>Produkt auf Wocheneinkaufsliste </p>
         <label class="switch">
-          <input type="checkbox" id="to_weeklyList_ToggleButton">
-          <span class="slider ckround"></span>
+            <input type="checkbox" id="to_weeklyList_ToggleButton">
+            <span class="slider ckround"></span>
         </label>
 
         <div class="input-wrapper">
             <input type="submit" id="btn_submit_edit" value="Speichern" class="submit-button">
         </div>
+    </div>
+
+
+    <!-- Weekly Shopping Modal -->
+    <div class="modal" id="weeklyShopping_modal">
+        <div class="xbutton" id="weeklyShopping_x">X</div>
+
+        <div class="scrollview" id="weeklyItems_Holder">
+            <div class="select-item">
+                <input type="checkbox" id="Äpfel" name="Äpfel" checked />
+                <label for="Äpfel">Äpfel</label>
+            </div>
+        </div>
+        <div class="save-button" id="btn_save_weekly_list">Einkaufsliste erstellen</div>
     </div>
 
 

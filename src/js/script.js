@@ -2,7 +2,7 @@
  * Erstellt am: 31.08.2023
  */
 //########################################
-//? Variables
+//* Variables
 //########################################
 let shoppinglist = [];
 let products = [];
@@ -17,7 +17,7 @@ let save_obj = {
 let current_product;
 
 //########################################
-//? Elements
+//* Elements
 //########################################
 const shopping_list = document.getElementById('shopping_list');
 const all_products = document.getElementById('all_products');
@@ -48,7 +48,7 @@ const productLabels = document.querySelectorAll('.productLabel');
 
 
 //########################################
-//? Class
+//* Class
 //########################################
 class Product {
     constructor(product_id, product_name, product_price) {
@@ -64,7 +64,7 @@ class Product {
 
 
 //########################################
-//? Init
+//* Init
 //########################################
 
 window.onload = init();
@@ -76,7 +76,7 @@ function init() {
 }
 
 //########################################
-//? Window Onload Load Local Storage
+//* Window Onload Load Local Storage
 //########################################
 function load_local_storage() {
     if (localStorage.getItem('stored_shopping_saveobj') != '') {
@@ -109,14 +109,14 @@ function load_local_storage() {
 }
 
 //########################################
-//? Save to local Storage
+//* Save to local Storage
 //########################################
 function save_into_storage() {
     localStorage.setItem('stored_shopping_saveobj', JSON.stringify(save_obj));
 }
 
 //########################################
-//? Render Shopping list
+//* Render Shopping list
 //########################################
 function render_shopping_list() {
     shopping_list.innerHTML = '';
@@ -167,7 +167,7 @@ function render_shopping_list() {
 }
 
 //########################################
-// //? Toggle check for product
+// //* Toggle check for product
 //########################################
 action_check.addEventListener("click", ()=> {
     if (current_product.is_open) {
@@ -184,7 +184,7 @@ action_check.addEventListener("click", ()=> {
 })
 
 //########################################
-// //? Open Edit Modal
+// //* Open Edit Modal
 //########################################
 
 action_edit.addEventListener("click", ()=> {
@@ -216,7 +216,7 @@ function open_edit_modal() {
 }
 
 //########################################
-//? Event Listener for remove button
+//* Event Listener for remove button
 //########################################
 action_delete.addEventListener('click', ()=> {
     delete_from_shoppinglist();
@@ -224,7 +224,7 @@ action_delete.addEventListener('click', ()=> {
 })
 
 //########################################
-//? Remove one product from shopping list
+//* Remove one product from shopping list
 //########################################
 function delete_from_shoppinglist() {
     if (current_product.is_on_list) {
@@ -253,7 +253,7 @@ function delete_from_shoppinglist() {
 
 
 //########################################
-//? Render Product list
+//* Render Product list
 //########################################
 function render_Product_list(arr) {
     all_products.innerHTML = '';
@@ -270,7 +270,7 @@ function render_Product_list(arr) {
         edit_button.classList.add('tile-edit-button');
         edit_button.innerHTML = '🖊️';
 
-        //? On Click, push item to shopping list
+        //* On Click, push item to shopping list
         prod_container.onclick = () => {
             // If product is already on list
             if (!shoppinglist.includes(product)) {
@@ -280,7 +280,7 @@ function render_Product_list(arr) {
                 save_obj.saved_shoppinglist = shoppinglist;
                 save_into_storage();
             }else {
-                //? Delete from shoppinglist
+                //* Delete from shoppinglist
                 current_product = product;
                 delete_from_shoppinglist()
             }
@@ -301,7 +301,7 @@ function render_Product_list(arr) {
 }
 
 //########################################
-//? Save Edit changes
+//* Save Edit changes
 //########################################
 btn_submit_edit.addEventListener("click", ()=> {
     if(inp_amount.value !== '') {
@@ -364,7 +364,7 @@ btn_submit_edit.addEventListener("click", ()=> {
 })
 
     //########################################
-    //?  set On / Off Weekly shopping list
+    //*  set On / Off Weekly shopping list
     //########################################
     to_weeklyList_ToggleButton.addEventListener('click', ()=>{
         const on_weekly_list_status = check_if_product_is_on_weeklyShoppingList();
@@ -416,7 +416,7 @@ btn_submit_edit.addEventListener("click", ()=> {
     })
 
     //########################################
-    //? check if prod is on weekly list
+    //* check if prod is on weekly list
     //########################################
 
     function check_if_product_is_on_weeklyShoppingList() {
@@ -438,7 +438,7 @@ btn_submit_edit.addEventListener("click", ()=> {
 
 
 //########################################
-//? Colorize Tile if is open
+//* Colorize Tile if is open
 //########################################
 function render_color(product, tile, list) {
     if (list === 'prod') {
@@ -457,7 +457,7 @@ function render_color(product, tile, list) {
 }
 
 //########################################
-//? Set Product at the last pos
+//* Set Product at the last pos
 //########################################
 function set_product_at_the_end() {
     const product = current_product;
@@ -472,7 +472,7 @@ function set_product_at_the_end() {
 }
 
 //########################################
-//? Set Product at the first pos
+//* Set Product at the first pos
 //########################################
 function set_product_at_the_start() {
     const product = current_product;
@@ -486,7 +486,7 @@ function set_product_at_the_start() {
 }
 
 //########################################
-//? Modal
+//* Modal
 //########################################
 btn_show_list.addEventListener('click', () => {
     products_modal.classList.add('active');
@@ -521,7 +521,7 @@ function hide_xbuttons() {
 }
 
 //########################################
-//? close Modals
+//* close Modals
 //########################################
 xbuttons.forEach((xbutton) => {
     xbutton.addEventListener('click', () => {
@@ -541,7 +541,7 @@ function close_all_modals() {
 }
 
 //########################################
-//? Add new Product
+//* Add new Product
 //########################################
 
 btn_submit.addEventListener('click', () => {
@@ -675,7 +675,7 @@ btn_delete_product.addEventListener("click", ()=> {
 
 
 //########################################
-//? Updage List and clean up
+//* Updage List and clean up
 //########################################
 function update_lists(){
     render_shopping_list();
@@ -687,7 +687,7 @@ function update_lists(){
 
 
 //########################################
-//? Filter Function for typing in product modal input field
+//* Filter Function for typing in product modal input field
 //########################################
 
 inp_prod.oninput = ()=> {
@@ -705,50 +705,91 @@ inp_prod.oninput = ()=> {
 }
 
 
+// Create a Modal for the weekly products
+//*TODO - Loop WeeklyList Array
+//*TODO - Create a div
+//*TODO - create an input elem from type checkbox
+//*TODO - Check all elem
+//*TODO - create a label with the innterText from the product
+//*TODO - Append to div
+//*TODO - Button to check the take all checked products to  the shopping list
+//*TODO - close the modal
+const weeklyItems_Holder = document.getElementById('weeklyItems_Holder');
+const weeklyShopping_modal = document.getElementById('weeklyShopping_modal');
+const weeklyShopping_x = document.getElementById('weeklyShopping_x');
+
 
 btn_trigger_weekly_list.addEventListener('click', ()=> {
-    let products_from_weekly_list = '';
-    weeklylist.forEach((prod)=> {
-        products_from_weekly_list = products_from_weekly_list + `${prod.product_name} \n`
+
+    weeklyItems_Holder.innerHTML = '';
+    // * Display Modal an x Btn
+    weeklyShopping_modal.classList.add('active');
+    weeklyShopping_x.classList.add('active');
+
+    //* loop weekly list and generate checklist items
+    weeklylist.forEach((prod) => {
+        let itemdiv = document.createElement('div');
+        itemdiv.classList.add('select-item');
+
+        let itemInp = document.createElement('input');
+        itemInp.type = 'checkbox';
+        itemInp.id = prod.product_id;
+        itemInp.checked = true;
+        itemInp.name = prod.product_name;
+
+        let itemLabel = document.createElement('label');
+        itemLabel.innerHTML = prod.product_name;
+        itemLabel.setAttribute('for', prod.product_id);
+
+        itemdiv.appendChild(itemInp);
+        itemdiv.appendChild(itemLabel);
+
+        weeklyItems_Holder.appendChild(itemdiv);
     })
-    const decision = window.confirm(`Sollen die Produkte vom Wocheneinkauf auf den Einkaufzettel übertragen werden? \n ${products_from_weekly_list}`);
 
-    if(decision) {
-        let success_counter = 0;
-        for(let i = 0; i < weeklylist.length; i++) {
-            let product_is_already_on_shoppinglist = false;
 
-            for(let j = 0; j < shoppinglist.length; j++) {
-                if(weeklylist[i].product_name === shoppinglist[j].product_name) {
-                    product_is_already_on_shoppinglist = true;
-                }
-            }
+    // let products_from_weekly_list = '';
+    // weeklylist.forEach((prod)=> {
+    //     products_from_weekly_list = products_from_weekly_list + `${prod.product_name} \n`
+    // })
+    // const decision = window.confirm(`Sollen die Produkte vom Wocheneinkauf auf den Einkaufzettel übertragen werden? \n ${products_from_weekly_list}`);
 
-            if(product_is_already_on_shoppinglist === false) {
-                success_counter++;
-                const product = weeklylist[i];
-                product.is_on_list = true;
-                product.is_open = true;
-                shoppinglist.push(product);
+    // if(decision) {
+    //     let success_counter = 0;
+    //     for(let i = 0; i < weeklylist.length; i++) {
+    //         let product_is_already_on_shoppinglist = false;
 
-                for(let j = 0; j < products.length; j++) {
-                    if(weeklylist[i].product_name === products[j].product_name) {
-                        products[j].is_on_list = true;
-                        products[j].is_open = true;
-                    }
-                }
-            }
-        }
+    //         for(let j = 0; j < shoppinglist.length; j++) {
+    //             if(weeklylist[i].product_name === shoppinglist[j].product_name) {
+    //                 product_is_already_on_shoppinglist = true;
+    //             }
+    //         }
 
-        if(success_counter === 0) {
-            alert('Es konnten keine Produkte auf die Einkaufsliste gesetzt werden, da sie sich bereits auf dieser befinden')
-        }else {
-            alert(`${success_counter} Produkte wurden zur Einkaufsliste hinzugefügt.`);
-        }
+    //         if(product_is_already_on_shoppinglist === false) {
+    //             success_counter++;
+    //             const product = weeklylist[i];
+    //             product.is_on_list = true;
+    //             product.is_open = true;
+    //             shoppinglist.push(product);
 
-        save_obj.saved_shoppinglist = shoppinglist;
-        save_obj.saved_products = products;
-        save_into_storage();
-        update_lists();
-    }
+    //             for(let j = 0; j < products.length; j++) {
+    //                 if(weeklylist[i].product_name === products[j].product_name) {
+    //                     products[j].is_on_list = true;
+    //                     products[j].is_open = true;
+    //                 }
+    //             }
+    //         }
+    //     }
+
+    //     if(success_counter === 0) {
+    //         alert('Es konnten keine Produkte auf die Einkaufsliste gesetzt werden, da sie sich bereits auf dieser befinden')
+    //     }else {
+    //         alert(`${success_counter} Produkte wurden zur Einkaufsliste hinzugefügt.`);
+    //     }
+
+    //     save_obj.saved_shoppinglist = shoppinglist;
+    //     save_obj.saved_products = products;
+    //     save_into_storage();
+    //     update_lists();
+    // }
 })
