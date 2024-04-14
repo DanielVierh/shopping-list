@@ -363,3 +363,12 @@ body {
   color: white;
   cursor: pointer;
 }
+
+#lbl_products_info {
+  width: fit-content;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -10px;
+  font-size: 10px;
+}
