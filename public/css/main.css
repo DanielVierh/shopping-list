@@ -109,8 +109,8 @@ body {
 }
 .list-wrapper .product .tile-edit-button {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 0;
+  right: 0;
   padding: 10px;
   width: fit-content;
   height: 15px;

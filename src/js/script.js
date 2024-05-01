@@ -89,7 +89,7 @@ function load_local_storage() {
 
             try {
                 lbl_products_info.innerHTML = `${products.length} Produkte vorhanden`;
-            } catch (error) {}
+            } catch (error) { }
             shoppinglist = save_obj.saved_shoppinglist;
             try {
                 weeklylist = save_obj.saved_weekly_list;
@@ -153,7 +153,7 @@ function render_shopping_list() {
             amount_label.innerHTML = product.amount;
         }
         amount_label.classList.add('amount-label');
-        
+
         //* Product name div
         let product_name_div = document.createElement('div');
         product_name_div.innerHTML = product.product_name;
@@ -275,11 +275,11 @@ function render_Product_list(arr) {
         let edit_button = document.createElement('div');
         amount_label.innerHTML = `${product.product_price} €`;
         amount_label.classList.add('amount-label');
-                //* Product name div
-                let product_name_div = document.createElement('div');
-                product_name_div.innerHTML = product.product_name;
-                product_name_div.classList.add('product-name-div');
-                prod_container.appendChild(product_name_div);
+        //* Product name div
+        let product_name_div = document.createElement('div');
+        product_name_div.innerHTML = product.product_name;
+        product_name_div.classList.add('product-name-div');
+        prod_container.appendChild(product_name_div);
         prod_container.classList.add('product');
         render_color(product, prod_container, 'prod');
         edit_button.classList.add('tile-edit-button');
@@ -305,7 +305,7 @@ function render_Product_list(arr) {
 
         edit_button.addEventListener('click', () => {
             current_product = product;
-            open_edit_modal()
+            open_edit_modal();
         })
 
         prod_container.appendChild(amount_label);
