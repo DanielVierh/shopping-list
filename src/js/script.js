@@ -153,7 +153,13 @@ function render_shopping_list() {
             amount_label.innerHTML = product.amount;
         }
         amount_label.classList.add('amount-label');
-        prod_container.innerHTML = product.product_name;
+        
+        //* Product name div
+        let product_name_div = document.createElement('div');
+        product_name_div.innerHTML = product.product_name;
+        product_name_div.classList.add('product-name-div');
+        prod_container.appendChild(product_name_div);
+
         prod_container.classList.add('product');
         render_color(product, prod_container);
         // On Click, push item to shopping list
@@ -269,7 +275,11 @@ function render_Product_list(arr) {
         let edit_button = document.createElement('div');
         amount_label.innerHTML = `${product.product_price} €`;
         amount_label.classList.add('amount-label');
-        prod_container.innerHTML = product.product_name;
+                //* Product name div
+                let product_name_div = document.createElement('div');
+                product_name_div.innerHTML = product.product_name;
+                product_name_div.classList.add('product-name-div');
+                prod_container.appendChild(product_name_div);
         prod_container.classList.add('product');
         render_color(product, prod_container, 'prod');
         edit_button.classList.add('tile-edit-button');

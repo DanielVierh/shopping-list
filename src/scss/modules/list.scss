@@ -30,6 +30,13 @@
         transition: all .4s ease;
         cursor: pointer;
 
+        .product-name-div {
+            width: 120px;
+            height: 80px;
+            overflow-y: scroll;
+            border-top: 1px solid rgba(211, 211, 211, 0.2);
+        }
+
 
         .amount-label{
             position: absolute;
@@ -39,7 +46,7 @@
             width: fit-content;
             border-radius: 10px;
             font-size: 12px;
-            padding: 5px;
+            padding: 2px 5px;
             box-shadow: inset 0 0 3px white;
             display: flex;
             justify-content: center;
