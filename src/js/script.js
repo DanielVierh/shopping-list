@@ -2,7 +2,7 @@
  * Erstellt am: 31.08.2023
  */
 //########################################
-//* Variables
+//*ANCHOR - Variables
 //########################################
 let shoppinglist = [];
 let products = [];
@@ -17,7 +17,7 @@ let save_obj = {
 let current_product;
 
 //########################################
-//* Elements
+//*ANCHOR - Elements
 //########################################
 const shopping_list = document.getElementById('shopping_list');
 const all_products = document.getElementById('all_products');
@@ -49,7 +49,7 @@ const productLabels = document.querySelectorAll('.productLabel');
 
 
 //########################################
-//* Class
+//*ANCHOR -  Class
 //########################################
 class Product {
     constructor(product_id, product_name, product_price) {
@@ -65,7 +65,7 @@ class Product {
 
 
 //########################################
-//* Init
+//*ANCHOR -  Init
 //########################################
 
 window.onload = init();
@@ -77,7 +77,7 @@ function init() {
 }
 
 //########################################
-//* Window Onload Load Local Storage
+//*ANCHOR -  Window Onload Load Local Storage
 //########################################
 function load_local_storage() {
     if (localStorage.getItem('stored_shopping_saveobj') != '') {
@@ -114,14 +114,14 @@ function load_local_storage() {
 }
 
 //########################################
-//* Save to local Storage
+//*ANCHOR -  Save to local Storage
 //########################################
 function save_into_storage() {
     localStorage.setItem('stored_shopping_saveobj', JSON.stringify(save_obj));
 }
 
 //########################################
-//* Render Shopping list
+//*ANCHOR -  Render Shopping list
 //########################################
 function render_shopping_list() {
     shopping_list.innerHTML = '';
@@ -178,7 +178,7 @@ function render_shopping_list() {
 }
 
 //########################################
-// //* Toggle check for product
+//* ANCHOR -  //* Toggle check for product
 //########################################
 action_check.addEventListener("click", () => {
     if (current_product.is_open) {
@@ -195,7 +195,7 @@ action_check.addEventListener("click", () => {
 })
 
 //########################################
-// //* Open Edit Modal
+// //*ANCHOR - Open Edit Modal
 //########################################
 
 action_edit.addEventListener("click", () => {
@@ -227,7 +227,7 @@ function open_edit_modal() {
 }
 
 //########################################
-//* Event Listener for remove button
+//*ANCHOR - Event Listener for remove button
 //########################################
 action_delete.addEventListener('click', () => {
     delete_from_shoppinglist();
@@ -235,7 +235,7 @@ action_delete.addEventListener('click', () => {
 })
 
 //########################################
-//* Remove one product from shopping list
+//*ANCHOR - Remove one product from shopping list
 //########################################
 function delete_from_shoppinglist() {
     if (current_product.is_on_list) {
@@ -264,7 +264,7 @@ function delete_from_shoppinglist() {
 
 
 //########################################
-//* Render Product list
+//*ANCHOR - Render Product list
 //########################################
 function render_Product_list(arr) {
     all_products.innerHTML = '';
@@ -316,7 +316,7 @@ function render_Product_list(arr) {
 }
 
 //########################################
-//* Save Edit changes
+//*ANCHOR - Save Edit changes
 //########################################
 btn_submit_edit.addEventListener("click", () => {
     if (inp_amount.value !== '') {
@@ -379,7 +379,7 @@ btn_submit_edit.addEventListener("click", () => {
 })
 
 //########################################
-//*  set On / Off Weekly shopping list
+//*ANCHOR -  set On / Off Weekly shopping list
 //########################################
 to_weeklyList_ToggleButton.addEventListener('click', () => {
     const on_weekly_list_status = check_if_product_is_on_weeklyShoppingList();
@@ -431,7 +431,7 @@ to_weeklyList_ToggleButton.addEventListener('click', () => {
 })
 
 //########################################
-//* check if prod is on weekly list
+//*ANCHOR - check if prod is on weekly list
 //########################################
 
 function check_if_product_is_on_weeklyShoppingList() {
@@ -453,7 +453,7 @@ function check_if_product_is_on_weeklyShoppingList() {
 
 
 //########################################
-//* Colorize Tile if is open
+//*ANCHOR - Colorize Tile if is open
 //########################################
 function render_color(product, tile, list) {
     if (list === 'prod') {
@@ -472,7 +472,7 @@ function render_color(product, tile, list) {
 }
 
 //########################################
-//* Set Product at the last pos
+//*ANCHOR - Set Product at the last pos
 //########################################
 function set_product_at_the_end() {
     const product = current_product;
@@ -487,7 +487,7 @@ function set_product_at_the_end() {
 }
 
 //########################################
-//* Set Product at the first pos
+//*ANCHOR - Set Product at the first pos
 //########################################
 function set_product_at_the_start() {
     const product = current_product;
@@ -501,7 +501,7 @@ function set_product_at_the_start() {
 }
 
 //########################################
-//* Modal
+//*ANCHOR - Modal
 //########################################
 btn_show_list.addEventListener('click', () => {
     products_modal.classList.add('active');
@@ -556,7 +556,7 @@ function close_all_modals() {
 }
 
 //########################################
-//* Add new Product
+//*ANCHOR - Add new Product
 //########################################
 
 btn_submit.addEventListener('click', () => {
@@ -613,7 +613,7 @@ function add_new_product() {
 }
 
 //########################################
-// ? Function to give random id
+// *ANCHOR - Function to give random id
 //########################################
 function uniqueID_Generator() {
     const rndStuff = [
@@ -630,7 +630,7 @@ function uniqueID_Generator() {
 
 
 //########################################
-// ? Delete shopping list
+//*ANCHOR - Delete shopping list
 //########################################
 
 btn_delete_shoppinglist.addEventListener("click", () => {
@@ -656,7 +656,7 @@ btn_delete_shoppinglist.addEventListener("click", () => {
 
 
 //########################################
-// ? Delete Product forever
+//*ANCHOR - Delete Product forever
 //########################################
 btn_delete_product.addEventListener("click", () => {
 
@@ -690,7 +690,7 @@ btn_delete_product.addEventListener("click", () => {
 
 
 //########################################
-//* Updage List and clean up
+//*ANCHOR - Updage List and clean up
 //########################################
 function update_lists() {
     render_shopping_list();
@@ -702,7 +702,7 @@ function update_lists() {
 
 
 //########################################
-//* Filter Function for typing in product modal input field
+//*ANCHOR - Filter Function for typing in product modal input field
 //########################################
 
 inp_prod.oninput = () => {
@@ -725,7 +725,7 @@ const weeklyShopping_modal = document.getElementById('weeklyShopping_modal');
 const weeklyShopping_x = document.getElementById('weeklyShopping_x');
 const btn_save_weekly_list = document.getElementById('btn_save_weekly_list');
 
-
+//*ANCHOR - Weekly List
 btn_trigger_weekly_list.addEventListener('click', () => {
 
     //* Reset weeklyItems_Holder
@@ -760,7 +760,7 @@ btn_trigger_weekly_list.addEventListener('click', () => {
     })
 })
 
-// * Add weekly products on list
+// *ANCHOR - Add weekly products on list
 btn_save_weekly_list.addEventListener('click', () => {
     const weeklyItemHoldr = document.querySelectorAll('.inp-check')
     let success_counter = 0;
