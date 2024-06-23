@@ -37,6 +37,31 @@
             border-top: 1px solid rgba(211, 211, 211, 0.2);
         }
 
+        .add-remove-button {
+            position: absolute;
+            bottom: -10px;
+            left: -35px;
+            width: 95px;
+            height: 50px;
+            z-index: 10;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(1px);
+            border: 1px solid rgba(255, 255, 255, 0.431);
+            font-size: 1.5rem;
+            transform: rotate(45deg);
+
+            &::after {
+                content: '+ -';
+                transform: rotate(-45deg);
+                padding-left: 10px;
+                padding-bottom: 10px;
+
+            }
+        }
+
 
         .amount-label{
             position: absolute;

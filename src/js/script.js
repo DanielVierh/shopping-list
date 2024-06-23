@@ -273,6 +273,7 @@ function render_Product_list(arr) {
         let prod_container = document.createElement('div');
         let amount_label = document.createElement('p');
         let edit_button = document.createElement('div');
+        let add_remove_button = document.createElement('div');
         amount_label.innerHTML = `${product.product_price} €`;
         amount_label.classList.add('amount-label');
         //* Product name div
@@ -284,9 +285,11 @@ function render_Product_list(arr) {
         render_color(product, prod_container, 'prod');
         edit_button.classList.add('tile-edit-button');
         edit_button.innerHTML = '🖊️';
+        // add_remove_button.innerHTML = '+ -';
+        add_remove_button.classList.add('add-remove-button');
 
-        //* On Click, push item to shopping list
-        prod_container.onclick = () => {
+        //* Onclick for add remove btn
+        add_remove_button.addEventListener('click', () => {
             // If product is already on list
             if (!shoppinglist.includes(product)) {
                 shoppinglist.push(product);
@@ -301,7 +304,12 @@ function render_Product_list(arr) {
             }
 
             update_lists();
-        };
+        })
+
+        // //* On Click, push item to shopping list
+        // prod_container.onclick = () => {
+
+        // };
 
         edit_button.addEventListener('click', () => {
             current_product = product;
@@ -310,6 +318,7 @@ function render_Product_list(arr) {
 
         prod_container.appendChild(amount_label);
         prod_container.appendChild(edit_button);
+        prod_container.appendChild(add_remove_button);
 
         all_products.appendChild(prod_container);
     });
