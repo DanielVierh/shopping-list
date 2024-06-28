@@ -815,3 +815,15 @@ btn_save_weekly_list.addEventListener('click', () => {
     update_lists();
     close_all_modals();
 })
+
+//*ANCHOR - Mark Value when user clicks on inputfield
+inp_price.addEventListener('click', ()=> {
+    if (inp_price.value) {
+        inp_price.select();
+    }
+});
+inp_amount.addEventListener('click', ()=> {
+    if (inp_amount.value) {
+        inp_amount.select();
+    }
+});
