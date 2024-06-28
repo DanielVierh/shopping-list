@@ -135,7 +135,7 @@ function render_shopping_list() {
     } else {
         btn_delete_shoppinglist.style.display = 'block';
     }
-    // Loop shopping list
+    //* Loop shopping list
     shoppinglist.forEach((product) => {
         try {
             const price = product.amount * product.product_price;
@@ -164,7 +164,7 @@ function render_shopping_list() {
         render_color(product, prod_container);
         // On Click, push item to shopping list
         prod_container.onclick = () => {
-            //Öffne neues Modal und übergebe prod
+            //*Öffne neues Modal und übergebe prod
             action_modal.classList.add('active-mini');
             activate_xbuttons('action_x');
             current_product = product;
@@ -290,7 +290,7 @@ function render_Product_list(arr) {
 
         //* Onclick for add remove btn
         add_remove_button.addEventListener('click', () => {
-            // If product is already on list
+            //* If product is already on list
             if (!shoppinglist.includes(product)) {
                 shoppinglist.push(product);
                 product.is_on_list = true;
@@ -307,10 +307,6 @@ function render_Product_list(arr) {
         })
 
         // //* On Click, push item to shopping list
-        // prod_container.onclick = () => {
-
-        // };
-
         edit_button.addEventListener('click', () => {
             current_product = product;
             open_edit_modal();
