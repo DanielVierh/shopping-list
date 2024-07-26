@@ -104,11 +104,11 @@
 
 
         &.on-list {
-            background-color: tomato;
+            background-color: var(--style3-open);
         }
 
         &.item-open {
-            background-color: tomato;
+            background-color: var(--style3-open);
         }
     }
 

@@ -1,6 +1,12 @@
 /*!**************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/style.scss ***!
   \**************************************************************************************************************/
+:root {
+  --style1-open: tomato;
+  --style2-open: #137b86;
+  --style3-open: rgb(155, 39, 4);
+}
+
 h1 {
   font-size: 6vw;
 }
@@ -145,10 +151,10 @@ body {
   box-shadow: inset 0 0 5px white;
 }
 .list-wrapper .product.on-list {
-  background-color: tomato;
+  background-color: var(--style3-open);
 }
 .list-wrapper .product.item-open {
-  background-color: tomato;
+  background-color: var(--style3-open);
 }
 
 .button-del {
