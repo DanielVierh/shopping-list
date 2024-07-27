@@ -172,6 +172,90 @@
 
     }
 
+    &#setting_modal {
+        .xbutton2 {
+            display: block;
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 10px;
+            width: 40px;
+            height: 40px;
+            background-color: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-radius: 50%;
+            z-index: 103;
+            box-shadow: inset 0 0 10px white, 0 0 10px white;
+            cursor: pointer;
+        }
+
+        .theme-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            padding: 15px;
+            width: 100%;
+            outline: 2px solid white;
+
+            .theme-item {
+                box-sizing: border-box;
+                width: 100px;
+                height: 100px;
+                background-color: gray;
+                margin: 2px;
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
+                text-align: center;
+                border-radius: 8px;
+                padding: 3px 3px 10px 3px;
+                overflow: hidden;
+                line-break: strict;
+                position: relative;
+                transition: all .4s ease;
+                cursor: pointer;
+
+                &.theme-1 {
+                    background: var(--style1-open);
+                }
+                &.theme-2 {
+                    background: var(--style2-open);
+                }
+                &.theme-3 {
+                    background: var(--style3-open);
+                }
+                &.theme-4 {
+                    background: var(--style4-open);
+                }
+                &.theme-5 {
+                    background: var(--style5-open);
+                }
+                &.theme-6 {
+                    background: var(--style6-open);
+                }
+                &.theme-7 {
+                    background: var(--style7-open);
+                }
+                &.theme-8 {
+                    background: var(--style8-open);
+                }
+                &.theme-9 {
+                    background: var(--style9-open);
+                }
+
+                &.selected {
+                    outline: 3px solid white;
+                }
+            }
+        }
+    }
+
     .xbutton {
         display: none;
 

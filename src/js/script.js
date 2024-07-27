@@ -40,6 +40,9 @@ const btn_delete_shoppinglist = document.getElementById("btn_delete_shoppinglist
 const btn_delete_product = document.getElementById("btn_delete_product");
 const btn_trigger_weekly_list = document.getElementById("btn_trigger_weekly_list");
 const lbl_products_info = document.getElementById("lbl_products_info");
+const setting_modal = document.getElementById('setting_modal');
+const setting_x = document.getElementById('setting_x');
+const btn_open_settings = document.getElementById('btn_open_settings');
 
 
 
@@ -823,3 +826,16 @@ inp_amount.addEventListener('click', ()=> {
         inp_amount.select();
     }
 });
+
+//* ANCHOR - Open Setting Modal
+
+btn_open_settings.addEventListener('click', ()=> {
+    setting_modal.classList.add('active')
+})
+
+
+//* ANCHOR - Close Setting Modal
+
+setting_x.addEventListener('click', ()=> {
+    setting_modal.classList.remove('active')
+})

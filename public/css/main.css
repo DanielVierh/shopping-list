@@ -5,6 +5,12 @@
   --style1-open: tomato;
   --style2-open: #137b86;
   --style3-open: rgb(155, 39, 4);
+  --style4-open: rgb(23, 25, 89);
+  --style5-open: radial-gradient(green, black);
+  --style6-open: radial-gradient(black, rgb(55, 55, 55));
+  --style7-open: radial-gradient(tomato, transparent);
+  --style8-open: radial-gradient(blue, rgb(55, 55, 55));
+  --style9-open: radial-gradient(rgb(186, 186, 186), rgb(55, 55, 55));
 }
 
 h1 {
@@ -54,6 +60,12 @@ body {
 }
 .weekly-button.active {
   display: block;
+}
+
+.settings-button {
+  position: fixed;
+  top: 15px;
+  left: 15px;
 }
 
 .list-wrapper {
@@ -351,6 +363,83 @@ body {
   border-radius: 15px;
   letter-spacing: 1.7px;
   cursor: pointer;
+}
+.modal#setting_modal .xbutton2 {
+  display: block;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 10px;
+  width: 40px;
+  height: 40px;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 50%;
+  z-index: 103;
+  box-shadow: inset 0 0 10px white, 0 0 10px white;
+  cursor: pointer;
+}
+.modal#setting_modal .theme-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 15px;
+  width: 100%;
+  outline: 2px solid white;
+}
+.modal#setting_modal .theme-wrapper .theme-item {
+  box-sizing: border-box;
+  width: 100px;
+  height: 100px;
+  background-color: gray;
+  margin: 2px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  text-align: center;
+  border-radius: 8px;
+  padding: 3px 3px 10px 3px;
+  overflow: hidden;
+  line-break: strict;
+  position: relative;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+.modal#setting_modal .theme-wrapper .theme-item.theme-1 {
+  background: var(--style1-open);
+}
+.modal#setting_modal .theme-wrapper .theme-item.theme-2 {
+  background: var(--style2-open);
+}
+.modal#setting_modal .theme-wrapper .theme-item.theme-3 {
+  background: var(--style3-open);
+}
+.modal#setting_modal .theme-wrapper .theme-item.theme-4 {
+  background: var(--style4-open);
+}
+.modal#setting_modal .theme-wrapper .theme-item.theme-5 {
+  background: var(--style5-open);
+}
+.modal#setting_modal .theme-wrapper .theme-item.theme-6 {
+  background: var(--style6-open);
+}
+.modal#setting_modal .theme-wrapper .theme-item.theme-7 {
+  background: var(--style7-open);
+}
+.modal#setting_modal .theme-wrapper .theme-item.theme-8 {
+  background: var(--style8-open);
+}
+.modal#setting_modal .theme-wrapper .theme-item.theme-9 {
+  background: var(--style9-open);
+}
+.modal#setting_modal .theme-wrapper .theme-item.selected {
+  outline: 3px solid white;
 }
 .modal .xbutton {
   display: none;
