@@ -857,7 +857,12 @@ themes.forEach((theme)=> {
 
 function set_Theme(_theme = '3') {
     r.style.setProperty('--MainTheme', `var(--style-open${_theme})`);
-    console.log(r.style);
+    remove_selected_theme();
+    themes.forEach((theme, index)=> {
+        if(index + 1 === parseInt(_theme)) {
+            theme.classList.add('selected')
+        }
+    })
 }
 
 
