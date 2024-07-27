@@ -2,13 +2,14 @@ $color-black: rgb(33, 31, 31);
 $color-modal-background: rgb(55, 57, 61);
 
 :root {
-    --style1-open: tomato;
-    --style2-open: #137b86;
-    --style3-open: rgb(155, 39, 4);
-    --style4-open: rgb(23, 25, 89);
-    --style5-open: radial-gradient(green, black);
-    --style6-open: radial-gradient(black, rgb(55, 55, 55));
-    --style7-open: radial-gradient(tomato, transparent);
-    --style8-open: radial-gradient(blue, rgb(55, 55, 55));
-    --style9-open: radial-gradient(rgb(186, 186, 186), rgb(55, 55, 55));;
+    --style-open1: tomato;
+    --style-open2: #137b86;
+    --style-open3: rgb(155, 39, 4);
+    --style-open4: rgb(23, 25, 89);
+    --style-open5: radial-gradient(green, black);
+    --style-open6: radial-gradient(black, rgb(55, 55, 55));
+    --style-open7: radial-gradient(tomato, transparent);
+    --style-open8: radial-gradient(blue, rgb(55, 55, 55));
+    --style-open9: radial-gradient(rgb(186, 186, 186), rgb(55, 55, 55));
+    --MainTheme: var(--style-open3);
 }

@@ -12,6 +12,7 @@ let save_obj = {
     saved_shoppinglist: [],
     saved_products: [],
     saved_weekly_list: [],
+    theme: '2',
 };
 
 let current_product;
@@ -43,7 +44,8 @@ const lbl_products_info = document.getElementById("lbl_products_info");
 const setting_modal = document.getElementById('setting_modal');
 const setting_x = document.getElementById('setting_x');
 const btn_open_settings = document.getElementById('btn_open_settings');
-
+const themes = document.querySelectorAll('.theme-item');
+const r = document.querySelector(':root');
 
 
 const xbuttons = document.querySelectorAll('.xbutton');
@@ -102,12 +104,18 @@ function load_local_storage() {
             } catch (error) {
                 console.log(error);
             }
+            try {
+                set_Theme(save_obj.theme)
+            } catch (error) {
+                console.log(error);
+            }
         } catch (error) {
             console.log(error);
             save_obj = {
                 saved_shoppinglist: [],
                 saved_products: [],
                 saved_weekly_list: [],
+                theme: '2',
             };
             save_obj.saved_products = products;
             save_obj.saved_shoppinglist = shoppinglist;
@@ -832,6 +840,32 @@ inp_amount.addEventListener('click', ()=> {
 btn_open_settings.addEventListener('click', ()=> {
     setting_modal.classList.add('active')
 })
+
+
+//* ANCHOR - Set Theme
+
+themes.forEach((theme)=> {
+    theme.addEventListener('click', ()=> {
+        remove_selected_theme();
+        const choosenTheme = theme.getAttribute('data-theme');
+        save_obj.theme = choosenTheme;
+        theme.classList.add('selected');
+        set_Theme(choosenTheme);
+        save_into_storage();
+    })
+})
+
+function set_Theme(_theme = '3') {
+    r.style.setProperty('--MainTheme', `var(--style-open${_theme})`);
+    console.log(r.style);
+}
+
+
+function remove_selected_theme() {
+    themes.forEach((theme)=> {
+        theme.classList.remove('selected')
+    })
+}
 
 
 //* ANCHOR - Close Setting Modal

@@ -2,15 +2,16 @@
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/style.scss ***!
   \**************************************************************************************************************/
 :root {
-  --style1-open: tomato;
-  --style2-open: #137b86;
-  --style3-open: rgb(155, 39, 4);
-  --style4-open: rgb(23, 25, 89);
-  --style5-open: radial-gradient(green, black);
-  --style6-open: radial-gradient(black, rgb(55, 55, 55));
-  --style7-open: radial-gradient(tomato, transparent);
-  --style8-open: radial-gradient(blue, rgb(55, 55, 55));
-  --style9-open: radial-gradient(rgb(186, 186, 186), rgb(55, 55, 55));
+  --style-open1: tomato;
+  --style-open2: #137b86;
+  --style-open3: rgb(155, 39, 4);
+  --style-open4: rgb(23, 25, 89);
+  --style-open5: radial-gradient(green, black);
+  --style-open6: radial-gradient(black, rgb(55, 55, 55));
+  --style-open7: radial-gradient(tomato, transparent);
+  --style-open8: radial-gradient(blue, rgb(55, 55, 55));
+  --style-open9: radial-gradient(rgb(186, 186, 186), rgb(55, 55, 55));
+  --MainTheme: var(--style-open3);
 }
 
 h1 {
@@ -163,10 +164,10 @@ body {
   box-shadow: inset 0 0 5px white;
 }
 .list-wrapper .product.on-list {
-  background-color: var(--style2-open);
+  background: var(--MainTheme);
 }
 .list-wrapper .product.item-open {
-  background-color: var(--style2-open);
+  background: var(--MainTheme);
 }
 
 .button-del {
@@ -412,31 +413,31 @@ body {
   cursor: pointer;
 }
 .modal#setting_modal .theme-wrapper .theme-item.theme-1 {
-  background: var(--style1-open);
+  background: var(--style-open1);
 }
 .modal#setting_modal .theme-wrapper .theme-item.theme-2 {
-  background: var(--style2-open);
+  background: var(--style-open2);
 }
 .modal#setting_modal .theme-wrapper .theme-item.theme-3 {
-  background: var(--style3-open);
+  background: var(--style-open3);
 }
 .modal#setting_modal .theme-wrapper .theme-item.theme-4 {
-  background: var(--style4-open);
+  background: var(--style-open4);
 }
 .modal#setting_modal .theme-wrapper .theme-item.theme-5 {
-  background: var(--style5-open);
+  background: var(--style-open5);
 }
 .modal#setting_modal .theme-wrapper .theme-item.theme-6 {
-  background: var(--style6-open);
+  background: var(--style-open6);
 }
 .modal#setting_modal .theme-wrapper .theme-item.theme-7 {
-  background: var(--style7-open);
+  background: var(--style-open7);
 }
 .modal#setting_modal .theme-wrapper .theme-item.theme-8 {
-  background: var(--style8-open);
+  background: var(--style-open8);
 }
 .modal#setting_modal .theme-wrapper .theme-item.theme-9 {
-  background: var(--style9-open);
+  background: var(--style-open9);
 }
 .modal#setting_modal .theme-wrapper .theme-item.selected {
   outline: 3px solid white;
