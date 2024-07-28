@@ -10,6 +10,9 @@ $color-modal-background: rgb(55, 57, 61);
     --style-open6: radial-gradient(black, rgb(55, 55, 55));
     --style-open7: radial-gradient(tomato, transparent);
     --style-open8: radial-gradient(blue, rgb(55, 55, 55));
-    --style-open9: radial-gradient(rgb(186, 186, 186), rgb(55, 55, 55));
+    --style-open9: radial-gradient(rgb(10, 55, 54), rgb(11, 141, 128));
+    --style-open10: linear-gradient(to top, black, gray);
+    --style-open11: linear-gradient(to top, black, teal);
+    --style-open12: linear-gradient(to top, black, tomato);
     --MainTheme: var(--style-open3);
 }

@@ -10,7 +10,10 @@
   --style-open6: radial-gradient(black, rgb(55, 55, 55));
   --style-open7: radial-gradient(tomato, transparent);
   --style-open8: radial-gradient(blue, rgb(55, 55, 55));
-  --style-open9: radial-gradient(rgb(186, 186, 186), rgb(55, 55, 55));
+  --style-open9: radial-gradient(rgb(10, 55, 54), rgb(11, 141, 128));
+  --style-open10: linear-gradient(to top, black, gray);
+  --style-open11: linear-gradient(to top, black, teal);
+  --style-open12: linear-gradient(to top, black, tomato);
   --MainTheme: var(--style-open3);
 }
 
@@ -99,6 +102,7 @@ body {
   position: relative;
   transition: all 0.4s ease;
   cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.28);
 }
 .list-wrapper .product .product-name-div {
   width: 120px;
@@ -438,6 +442,15 @@ body {
 }
 .modal#setting_modal .theme-wrapper .theme-item.theme-9 {
   background: var(--style-open9);
+}
+.modal#setting_modal .theme-wrapper .theme-item.theme-10 {
+  background: var(--style-open10);
+}
+.modal#setting_modal .theme-wrapper .theme-item.theme-11 {
+  background: var(--style-open11);
+}
+.modal#setting_modal .theme-wrapper .theme-item.theme-12 {
+  background: var(--style-open12);
 }
 .modal#setting_modal .theme-wrapper .theme-item.selected {
   outline: 3px solid white;
