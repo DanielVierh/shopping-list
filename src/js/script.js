@@ -303,7 +303,7 @@ function render_Product_list(arr) {
         add_remove_button.addEventListener('click', () => {
             //* If product is already on list
             if (!shoppinglist.includes(product)) {
-                shoppinglist.push(product);
+                shoppinglist.unshift(product);
                 product.is_on_list = true;
                 product.is_open = true;
                 save_obj.saved_shoppinglist = shoppinglist;
