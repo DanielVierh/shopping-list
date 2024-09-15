@@ -1,6 +1,9 @@
 /**
  * Erstellt am: 31.08.2023
  */
+
+import { backup } from "./modules/backup.js";
+
 //########################################
 //*ANCHOR - Variables
 //########################################
@@ -16,6 +19,7 @@ let save_obj = {
 };
 
 let current_product;
+
 
 //########################################
 //*ANCHOR - Elements
@@ -91,6 +95,7 @@ function load_local_storage() {
                 localStorage.getItem('stored_shopping_saveobj'),
             );
             products = save_obj.saved_products;
+            backup(save_obj);
 
             try {
                 lbl_products_info.innerHTML = `${products.length} Produkte vorhanden`;
