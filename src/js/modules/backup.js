@@ -2,18 +2,19 @@
  * 
  */
 export function backup(saveobj) {
-    
-     //* Add identifier to check on read and set the name
-     saveobj.identifier = 'shoppinglist'
 
-     //* Add current date for the file name
-     const dte = new Date();
-     const d = dte.getDate();
-     const m = dte.getMonth() + 1
-     const y = dte.getFullYear();
-     const date = `${d}.${m}.${y}`
-  
-        
+    //* Add identifier to check on read and set the name
+    const identifier = 'shoppinglist'
+    saveobj.identifier = identifier;
+
+    //* Add current date for the file name
+    const dte = new Date();
+    const d = dte.getDate();
+    const m = dte.getMonth() + 1
+    const y = dte.getFullYear();
+    const date = `${d}.${m}.${y}`
+
+
 
 
     //* ANCHOR - Export File
@@ -44,15 +45,22 @@ export function backup(saveobj) {
             reader.onload = function (e) {
                 try {
                     const json = JSON.parse(e.target.result); // JSON parsen
-                    //TODO - Check if identifier is korrekt
-
-                    //TODO - set as new local storage obj
-                    document.getElementById('jsonOutput').textContent = JSON.stringify(json, null, 2); // Anzeigen
-                    statusLabel.innerHTML = 'Backup erfolgreich importiert'
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 3000);
+                    if (json.identifier === identifier) {
+                        //TODO - set as new local storage obj
+                        localStorage.setItem('stored_shopping_saveobj', JSON.stringify(json));
+                        statusLabel.innerHTML = 'Backup erfolgreich importiert'
+                        statusLabel.style.color = 'lightgreen'
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 3000);
+                    }else {
+                        statusLabel.innerHTML = 'Backup konnte nicht geladen werden';
+                        statusLabel.style.color = 'red'
+                        return
+                    }
                 } catch (err) {
+                    statusLabel.innerHTML = 'Backup konnte nicht geladen werden'
+                    statusLabel.style.color = 'red'
                     console.error("Fehler beim Parsen der Datei:", err);
                     alert("Fehler: Die Datei enthält kein gültiges JSON.");
                 }
@@ -60,5 +68,5 @@ export function backup(saveobj) {
             reader.readAsText(file); // Datei-Inhalt als Text laden
         }
     });
-    
+
 }
