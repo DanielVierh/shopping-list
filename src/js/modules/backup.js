@@ -6,6 +6,7 @@ export function backup(saveobj) {
     //* Add identifier to check on read and set the name
     const identifier = 'shoppinglist'
     saveobj.identifier = identifier;
+    const statusLabel = document.getElementById('status');
 
     //* Add current date for the file name
     const dte = new Date();
@@ -34,38 +35,56 @@ export function backup(saveobj) {
         URL.revokeObjectURL(url); // Aufräumen der URL
     });
 
+
+
     //* ANCHOR - Import File
+    let selectedFile = null; // Globale Variable, um die ausgewählte Datei zu speichern
 
+    // Event-Listener für die Dateiauswahl
     document.getElementById('uploadJsonBtn').addEventListener('change', function (event) {
-        const file = event.target.files[0]; // Erste ausgewählte Datei
-        const statusLabel = document.getElementById('status');
+        selectedFile = event.target.files[0]; // Erste ausgewählte Datei speichern
 
-        if (file) {
+        if (selectedFile) {
+            statusLabel.innerHTML = 'Datei wurde ausgewählt. Klicken Sie auf "Importieren", um den Import zu starten.';
+            statusLabel.style.color = 'lightblue';
+        } else {
+            statusLabel.innerHTML = 'Keine Datei ausgewählt.';
+            statusLabel.style.color = 'red';
+        }
+    });
+
+    //* Event-Listener für den Import-Button
+    const import_btn = document.getElementById('btn_importBackup');
+    import_btn.addEventListener('click', () => {
+
+        if (selectedFile) {
             const reader = new FileReader();
             reader.onload = function (e) {
                 try {
                     const json = JSON.parse(e.target.result); // JSON parsen
+
                     if (json.identifier === identifier) {
-                        //TODO - set as new local storage obj
                         localStorage.setItem('stored_shopping_saveobj', JSON.stringify(json));
-                        statusLabel.innerHTML = 'Backup erfolgreich importiert'
-                        statusLabel.style.color = 'lightgreen'
+                        statusLabel.innerHTML = 'Backup erfolgreich importiert';
+                        statusLabel.style.color = 'lightgreen';
                         setTimeout(() => {
                             window.location.reload();
-                        }, 3000);
-                    }else {
+                        }, 2500);
+                    } else {
                         statusLabel.innerHTML = 'Backup konnte nicht geladen werden';
-                        statusLabel.style.color = 'red'
-                        return
+                        statusLabel.style.color = 'red';
                     }
                 } catch (err) {
-                    statusLabel.innerHTML = 'Backup konnte nicht geladen werden'
-                    statusLabel.style.color = 'red'
+                    statusLabel.innerHTML = 'Backup konnte nicht geladen werden';
+                    statusLabel.style.color = 'red';
                     console.error("Fehler beim Parsen der Datei:", err);
                     alert("Fehler: Die Datei enthält kein gültiges JSON.");
                 }
             };
-            reader.readAsText(file); // Datei-Inhalt als Text laden
+            reader.readAsText(selectedFile); // Datei-Inhalt als Text laden
+        } else {
+            statusLabel.innerHTML = 'Bitte wählen Sie zuerst eine Datei aus.';
+            statusLabel.style.color = 'red';
         }
     });
 

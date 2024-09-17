@@ -387,6 +387,13 @@ body {
   box-shadow: inset 0 0 10px white, 0 0 10px white;
   cursor: pointer;
 }
+.modal#setting_modal .backup-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.modal#setting_modal .backup-wrapper #btn_importBackup {
+  margin-top: 20px;
+}
 .modal#setting_modal .theme-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -399,8 +406,8 @@ body {
 }
 .modal#setting_modal .theme-wrapper .theme-item {
   box-sizing: border-box;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   background-color: gray;
   margin: 2px;
   color: white;

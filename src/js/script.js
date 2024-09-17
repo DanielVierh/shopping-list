@@ -115,7 +115,6 @@ function load_local_storage() {
                 console.log(error);
             }
         } catch (error) {
-            console.log(error);
             save_obj = {
                 saved_shoppinglist: [],
                 saved_products: [],

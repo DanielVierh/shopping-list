@@ -192,6 +192,15 @@
             cursor: pointer;
         }
 
+        .backup-wrapper {
+            display: flex;
+            flex-direction: column;
+
+            #btn_importBackup {
+                margin-top: 20px;
+            }
+        }
+
         .theme-wrapper {
             display: flex;
             flex-wrap: wrap;
@@ -204,8 +213,8 @@
 
             .theme-item {
                 box-sizing: border-box;
-                width: 100px;
-                height: 100px;
+                width: 80px;
+                height: 80px;
                 background-color: gray;
                 margin: 2px;
                 color: white;
