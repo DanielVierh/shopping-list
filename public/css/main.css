@@ -390,6 +390,11 @@ body {
 .modal#setting_modal .backup-wrapper {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  padding: 0 50px;
+}
+.modal#setting_modal .backup-wrapper input, .modal#setting_modal .backup-wrapper button {
+  width: fit-content;
 }
 .modal#setting_modal .backup-wrapper #btn_importBackup {
   margin-top: 20px;
