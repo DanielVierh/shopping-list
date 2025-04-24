@@ -109,6 +109,7 @@ body {
   height: 80px;
   overflow-y: scroll;
   border-top: 1px solid rgba(211, 211, 211, 0.2);
+  hyphens: auto;
 }
 .list-wrapper .product .add-remove-button {
   position: absolute;
