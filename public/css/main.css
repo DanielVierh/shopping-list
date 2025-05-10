@@ -265,6 +265,18 @@ body {
   flex-direction: column;
   border: 1px solid rgba(255, 255, 255, 0.348);
 }
+.modal.modal-small .wrapper {
+  display: flex;
+}
+.modal.modal-small .wrapper .round-button {
+  width: 30px;
+  padding: 10px;
+  border-radius: 50%;
+  height: 30px;
+}
+.modal.modal-small .wrapper #lbl_current_amount {
+  margin: 0 8px;
+}
 .modal.modal-small #prod_modal_label {
   font-size: 24px;
   margin-bottom: 10px;

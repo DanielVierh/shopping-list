@@ -181,6 +181,7 @@ function render_shopping_list() {
         prod_container.onclick = () => {
             //*Öffne neues Modal und übergebe prod
             action_modal.classList.add('active-mini');
+            lbl_current_amount.innerText = `Menge \n ${product.amount}`;
             activate_xbuttons('action_x');
             current_product = product;
             prod_modal_label.innerText = product.product_name;
@@ -882,3 +883,59 @@ function remove_selected_theme() {
 setting_x.addEventListener('click', ()=> {
     setting_modal.classList.remove('active')
 })
+
+
+// Elemente referenzieren
+const increase_amount = document.getElementById('increase_amount');
+const decrease_amount = document.getElementById('decrease_amount');
+const lbl_current_amount = document.getElementById('lbl_current_amount');
+
+// Event Listener für den "➕"-Button
+increase_amount.addEventListener('click', () => {
+    if (current_product) {
+        current_product.amount++;
+        lbl_current_amount.innerText = `Menge \n ${current_product.amount}`;
+
+        // Update in allen relevanten Listen
+        updateProductAmountInLists(current_product);
+        save_into_storage();
+        update_lists();
+    }
+});
+
+// Event Listener für den "➖"-Button
+decrease_amount.addEventListener('click', () => {
+    if (current_product && current_product.amount > 1) {
+        current_product.amount--;
+        lbl_current_amount.innerText = `Menge \n ${current_product.amount}`;
+
+        // Update in allen relevanten Listen
+        updateProductAmountInLists(current_product);
+        save_into_storage();
+        update_lists();
+    }
+});
+
+// Funktion, um die Menge in allen Listen zu aktualisieren
+function updateProductAmountInLists(product) {
+    // In der Produktliste aktualisieren
+    products.forEach((prod) => {
+        if (prod.product_name === product.product_name) {
+            prod.amount = product.amount;
+        }
+    });
+
+    // In der Einkaufsliste aktualisieren
+    shoppinglist.forEach((prod) => {
+        if (prod.product_name === product.product_name) {
+            prod.amount = product.amount;
+        }
+    });
+
+    // In der Wochenliste aktualisieren
+    weeklylist.forEach((prod) => {
+        if (prod.product_name === product.product_name) {
+            prod.amount = product.amount;
+        }
+    });
+}

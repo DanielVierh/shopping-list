@@ -45,6 +45,21 @@
             border: 1px solid rgba(255, 255, 255, 0.348);
         }
 
+        .wrapper {
+            display: flex;
+            
+            .round-button {
+                width: 30px;
+                padding: 10px;
+                border-radius: 50%;
+                height: 30px;
+            }
+
+            #lbl_current_amount {
+                margin: 0 8px;
+            }
+        }
+
         #prod_modal_label {
             font-size: 24px;
             margin-bottom: 10px;
