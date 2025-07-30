@@ -153,6 +153,10 @@ body {
   width: fit-content;
   border-radius: 8px;
 }
+.list-wrapper .product .amount-label.extra-amount {
+  background-color: orange;
+  color: black;
+}
 .list-wrapper .product .tile-edit-button {
   position: absolute;
   top: 0;

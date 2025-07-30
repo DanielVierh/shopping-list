@@ -168,6 +168,9 @@ function render_shopping_list() {
             amount_label.innerHTML = product.amount;
         }
         amount_label.classList.add('amount-label');
+        if(product.amount >= 2) {
+           amount_label.classList.add('extra-amount'); 
+        }
 
         //* Product name div
         let product_name_div = document.createElement('div');
