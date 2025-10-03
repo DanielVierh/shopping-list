@@ -1,0 +1,38 @@
+[
+  {
+    "product_id": "7JS95IESQFG#HPCBI7PWK8INLM6BPWW!SNP4",
+    "product_name": "Butter",
+    "product_price": "2.4",
+    "is_on_list": true,
+    "is_open": true,
+    "amount": "1",
+    "on_weekly_list": false
+  },
+  {
+    "product_id": "CNP9RBDX42SRFTET!NX!1UD1EAYOHHAEY0WF",
+    "product_name": "Eier",
+    "product_price": "3",
+    "is_on_list": true,
+    "is_open": true,
+    "amount": "1",
+    "on_weekly_list": false
+  },
+  {
+    "product_id": "!$LZAOJJS2N2P2TIV0HBO7TYACGJV5RC2R!M",
+    "product_name": "Brot",
+    "product_price": "2.5",
+    "is_on_list": true,
+    "is_open": true,
+    "amount": "1",
+    "on_weekly_list": false
+  },
+  {
+    "product_id": "0ZWOS55!1#JL7C!5FTH5XB7WZU!CC6WPFXB$",
+    "product_name": "Äpfel",
+    "product_price": "2",
+    "is_on_list": true,
+    "is_open": true,
+    "amount": "1",
+    "on_weekly_list": false
+  }
+]
