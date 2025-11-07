@@ -1,22 +1,36 @@
 .grid {
-    display: grid;
-    grid-template-columns: repeat (12, 1fr);
-    gap: 30px;
-    max-width: 1400px;
+  display: grid;
+  grid-template-columns: repeat (12, 1fr);
+  gap: 30px;
+  max-width: 1400px;
 }
 
 .center {
-    margin: 0 auto;
-    max-width: 1400px;
+  margin: 0 auto;
+  max-width: 1400px;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    line-height: 1.5em;
-    scroll-behavior: smooth;
-    background-color: $color-black;
-    color: white;
-    text-align: center;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  line-height: 1.5em;
+  scroll-behavior: smooth;
+  background-color: $color-black;
+  color: white;
+  text-align: center;
+}
+
+.filter-wrapper {
+  display: flex;
+  gap: 7px 12px;
+  justify-content: flex-end;
+  padding-right: 20px;
+}
+
+.filter-label {
+  text-align: right;
+  padding-right: 78px;
+  margin-bottom: 0;
+  font-size: 12px;
 }

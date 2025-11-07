@@ -1,23 +1,31 @@
 .weekly-button {
-    background-color: black;
-    width: fit-content;
-    padding: 5px 10px;
-    margin: 5px;
-    border-radius: 8px;
-    font-size: 12px;
-    letter-spacing: 2.5px;
-    box-shadow: inset 0 0 20px white;
-    border: 1px solid white;
-    display: none;
-    cursor: pointer;
+  background-color: black;
+  width: fit-content;
+  padding: 5px 10px;
+  margin: 5px;
+  border-radius: 8px;
+  font-size: 12px;
+  letter-spacing: 2.5px;
+  box-shadow: inset 0 0 20px white;
+  border: 1px solid white;
+  display: none;
+  cursor: pointer;
 
-    &.active {
-        display: block;
-    }
+  &.active {
+    display: block;
+  }
 }
 
 .settings-button {
-    position: fixed;
-    top: 15px;
-    left: 15px;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+}
+
+.filter-button {
+  background-color: black;
+  width: fit-content;
+  padding: 5px 8px;
+  border-radius: 5px;
+  color: mediumturquoise;
 }
