@@ -59,7 +59,7 @@ body {
 .filter-label {
   text-align: right;
   padding-right: 78px;
-  margin-bottom: 0;
+  margin: 0;
   font-size: 12px;
 }
 
@@ -91,6 +91,9 @@ body {
   width: fit-content;
   padding: 5px 8px;
   border-radius: 5px;
+  color: white;
+}
+.filter-button.active {
   color: mediumturquoise;
 }
 
@@ -225,6 +228,7 @@ body {
 .shopping-sum {
   color: red;
   font-size: 7vw;
+  margin: 0;
 }
 @media (min-width: 1600px) {
   .shopping-sum {

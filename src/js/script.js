@@ -20,6 +20,7 @@ let save_obj = {
 };
 
 let current_product;
+let filter_by = 'no_filter';
 
 //########################################
 //*ANCHOR - Elements
@@ -60,6 +61,8 @@ const r = document.querySelector(":root");
 const xbuttons = document.querySelectorAll(".xbutton");
 const modals = document.querySelectorAll(".modal");
 const productLabels = document.querySelectorAll(".productLabel");
+const btn_filter_name = document.getElementById('btn_filter_name');
+const btn_filter_status = document.getElementById('btn_filter_status');
 
 //########################################
 //*ANCHOR -  Class
@@ -127,7 +130,7 @@ function load_local_storage() {
 
       try {
         lbl_products_info.innerHTML = `${products.length} Produkte vorhanden`;
-      } catch (error) {}
+      } catch (error) { }
       shoppinglist = save_obj.saved_shoppinglist;
       try {
         weeklylist = save_obj.saved_weekly_list;
@@ -770,6 +773,13 @@ btn_delete_product.addEventListener("click", () => {
 //*ANCHOR - Updage List and clean up
 //########################################
 function update_lists() {
+  if (filter_by === 'name') {
+    save_obj.saved_shoppinglist = filter_by_name(save_obj.saved_shoppinglist);
+  } else if (filter_by === 'status') {
+    save_obj.saved_shoppinglist = filter_by_status(save_obj.saved_shoppinglist);
+  } else {
+    save_obj.saved_shoppinglist = filter_by_status(save_obj.saved_shoppinglist);
+  }
   render_shopping_list();
   render_Product_list(products);
   inp_prod.value = "";
@@ -987,4 +997,29 @@ function updateProductAmountInLists(product) {
       prod.amount = product.amount;
     }
   });
+}
+
+// Filter Shoppinglist
+btn_filter_name.addEventListener("click", () => {
+  filter_by = 'name';
+  save_obj.saved_shoppinglist = filter_by_name(save_obj.saved_shoppinglist);
+  update_lists();
+});
+
+btn_filter_status.addEventListener('click', () => {
+  filter_by = 'status'
+  save_obj.saved_shoppinglist = filter_by_status(save_obj.saved_shoppinglist);
+  update_lists();
+})
+
+function filter_by_name(list) {
+  btn_filter_name.classList.add('active');
+  btn_filter_status.classList.remove('active');
+  return list.sort((a, b) => a.product_name.localeCompare(b.product_name));
+}
+
+function filter_by_status(list) {
+  btn_filter_name.classList.remove('active');
+  btn_filter_status.classList.add('active');
+  return list.sort((a, b) => b.is_open - a.is_open);
 }
