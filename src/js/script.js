@@ -1002,13 +1002,11 @@ function updateProductAmountInLists(product) {
 // Filter Shoppinglist
 btn_filter_name.addEventListener("click", () => {
   filter_by = 'name';
-  save_obj.saved_shoppinglist = filter_by_name(save_obj.saved_shoppinglist);
   update_lists();
 });
 
 btn_filter_status.addEventListener('click', () => {
   filter_by = 'status'
-  save_obj.saved_shoppinglist = filter_by_status(save_obj.saved_shoppinglist);
   update_lists();
 })
 
